@@ -1,0 +1,734 @@
+/* ==================================================
+   PAGES ACCOUNTS
+   ================================================== */
+
+.page-accounts {
+    color: var(--color-text);
+    padding: 16px 0 35px;
+}
+
+
+/* ==================================================
+   CONTENEUR
+   ================================================== */
+
+.conteneur-accounts {
+    width: 100%;
+    max-width: 780px;
+    margin: auto;
+}
+
+
+/* ==================================================
+   EN-TÊTE
+   ================================================== */
+
+.entete-accounts {
+    margin-bottom: 25px;
+}
+
+.entete-accounts h1 {
+    margin: 0 0 10px;
+    font-size: 34px;
+    color: var(--color-text);
+}
+
+.etiquette-accounts {
+    color: #0F766E !important;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 8px;
+}
+
+[data-theme="dark"] .etiquette-accounts {
+    color: #2dd4bf !important;
+}
+
+.sous-titre-accounts {
+    color: #111827;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+[data-theme="dark"] .sous-titre-accounts {
+    color: #cbd5e1;
+}
+
+
+/* ==================================================
+   CARTES
+   ================================================== */
+
+.carte-accounts {
+    padding: 28px;
+    background: var(--color-surface);
+    border: 1.5px solid #0F766E;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 20px -2px rgba(15, 118, 110, 0.08);
+    margin-bottom: 22px;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+[data-theme="dark"] .carte-accounts {
+    border-color: rgba(20, 184, 166, 0.4);
+    box-shadow: var(--color-card-shadow);
+}
+
+.carte-accounts h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #111827;
+    border-bottom: 2px solid #0F766E;
+    padding-bottom: 10px;
+}
+
+[data-theme="dark"] .carte-accounts h2 {
+    color: #ffffff;
+    border-bottom-color: #0F766E;
+}
+
+
+/* ==================================================
+   FORMULAIRES
+   ================================================== */
+
+.formulaire-accounts p {
+    margin-bottom: 18px;
+}
+
+.formulaire-accounts label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.formulaire-accounts input,
+.formulaire-accounts select,
+.formulaire-accounts textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 14px;
+    background: var(--color-input-bg);
+    color: var(--color-input-text);
+    border: 1.5px solid var(--color-input-border);
+    border-radius: 10px;
+    font-size: 15px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.formulaire-accounts textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+.formulaire-accounts option {
+    background: var(--color-input-bg);
+    color: var(--color-input-text);
+}
+
+.formulaire-accounts input:focus,
+.formulaire-accounts select:focus,
+.formulaire-accounts textarea:focus {
+    outline: none;
+    border-color: #0F766E;
+    box-shadow: 0 0 0 0.2rem rgba(15, 118, 110, 0.18);
+}
+
+
+/* ==================================================
+   AIDE ET ERREURS DE VALIDATION
+   ================================================== */
+
+.formulaire-accounts .helptext {
+    display: block;
+    margin-top: 6px;
+    color: var(--color-text-muted);
+    font-size: 13px;
+}
+
+.formulaire-accounts .errorlist {
+    margin: 6px 0;
+    padding-left: 20px;
+    color: #ef4444;
+}
+
+.message-erreur {
+    padding: 14px 16px;
+    margin-bottom: 20px;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 10px;
+    color: #991b1b;
+}
+
+[data-theme="dark"] .message-erreur {
+    background: rgba(255, 90, 90, 0.12);
+    border: 1px solid rgba(255, 150, 150, 0.4);
+    color: #ffd1d1;
+}
+
+.message-succes {
+    padding: 14px 16px;
+    margin-bottom: 20px;
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 10px;
+    color: #166534;
+}
+
+[data-theme="dark"] .message-succes {
+    background: rgba(120, 255, 180, 0.10);
+    border: 1px solid rgba(150, 255, 190, 0.35);
+    color: #8ef0c7;
+}
+
+.message-avertissement {
+    padding: 14px 16px;
+    margin-bottom: 20px;
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-radius: 10px;
+    color: #92400e;
+    font-weight: 500;
+}
+
+[data-theme="dark"] .message-avertissement {
+    background: rgba(255, 208, 100, 0.12);
+    border: 1px solid rgba(255, 208, 100, 0.4);
+    color: #ffe6a8;
+}
+
+
+/* ==================================================
+   TABLEAU DE BORD (MODULE ACCOUNTS)
+   ================================================== */
+
+.conteneur-tableau { max-width: 1100px; }
+.grille-tableau { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 18px; }
+.grille-tableau .carte-accounts { margin: 0; }
+.chiffre-tableau { font-size: 2.5rem; font-weight: 700; color: var(--color-text); }
+
+
+/* ==================================================
+   LISTES STRUCTURÉES DU PROFIL
+   ================================================== */
+
+.section-formset {
+    padding-top: 25px;
+    margin-top: 25px;
+    border-top: 1px solid var(--color-border);
+}
+
+.entete-formset {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.entete-formset h3 {
+    margin: 0 0 6px;
+    font-size: 19px;
+    font-weight: 700;
+    color: #111827;
+}
+
+[data-theme="dark"] .entete-formset h3 {
+    color: #ffffff;
+}
+
+.entete-formset p {
+    margin: 0;
+    color: #111827;
+    font-size: 14px;
+}
+
+[data-theme="dark"] .entete-formset p {
+    color: #cbd5e1;
+}
+
+.liste-elements {
+    display: grid;
+    gap: 15px;
+}
+
+.element-form {
+    padding: 18px;
+    background: #ffffff;
+    border: 1.5px solid #0F766E;
+    border-left: 5px solid #0F766E;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(15, 118, 110, 0.06);
+}
+
+[data-theme="dark"] .element-form {
+    background: rgba(15, 118, 110, 0.12);
+    border-color: rgba(20, 184, 166, 0.4);
+    border-left-color: #14b8a6;
+}
+
+.champ-form {
+    margin-bottom: 14px;
+}
+
+.champ-form:last-of-type {
+    margin-bottom: 0;
+}
+
+.element-form textarea {
+    min-height: 85px;
+}
+
+.suppression-form {
+    display: none;
+}
+
+.bouton-ajouter,
+.bouton-supprimer {
+    padding: 9px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 13.5px;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bouton-ajouter {
+    flex: 0 0 auto;
+    background: var(--color-btn-normal-bg);
+    color: var(--color-btn-normal-text) !important;
+    border: 1.5px solid var(--color-btn-normal-border);
+    box-shadow: 0 2px 8px var(--color-btn-normal-shadow);
+}
+
+.bouton-ajouter:hover {
+    background: var(--color-btn-normal-hover-bg);
+    border-color: var(--color-btn-normal-hover-border);
+    color: var(--color-btn-normal-text) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px var(--color-btn-normal-shadow);
+}
+
+.bouton-supprimer {
+    background: transparent;
+    color: #ef4444;
+    border: 1.5px solid rgba(239, 68, 68, 0.5);
+}
+
+.bouton-supprimer:hover {
+    background: rgba(239, 68, 68, 0.1);
+}
+
+
+/* ==================================================
+   BOUTONS ET LIENS
+   ================================================== */
+
+.bouton-accounts {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 11px 20px;
+    background: var(--color-btn-normal-bg);
+    color: var(--color-btn-normal-text) !important;
+    border: 1.5px solid var(--color-btn-normal-border);
+    border-radius: 10px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 8px var(--color-btn-normal-shadow);
+    white-space: nowrap;
+}
+
+.bouton-accounts:hover {
+    background: var(--color-btn-normal-hover-bg);
+    border-color: var(--color-btn-normal-hover-border);
+    color: var(--color-btn-normal-text) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px var(--color-btn-normal-shadow);
+}
+
+/* Boutons d'acceptation / validation dans accounts (vert clair) */
+.bouton-accounts.bouton-accepter,
+.bouton-accounts.bouton-valider {
+    background: var(--color-btn-accept-bg) !important;
+    border-color: var(--color-btn-accept-border) !important;
+    color: var(--color-btn-accept-text) !important;
+    box-shadow: 0 2px 10px var(--color-btn-accept-shadow) !important;
+}
+
+.bouton-accounts.bouton-accepter:hover,
+.bouton-accounts.bouton-valider:hover {
+    background: var(--color-btn-accept-hover-bg) !important;
+    border-color: var(--color-btn-accept-hover-border) !important;
+    color: var(--color-btn-accept-text) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px var(--color-btn-accept-shadow) !important;
+}
+
+.bouton-secondaire-accounts {
+    background: var(--color-surface);
+    border: 1.5px solid var(--color-border);
+    color: var(--color-text) !important;
+    box-shadow: none;
+}
+
+.bouton-secondaire-accounts:hover {
+    background: var(--color-surface-hover);
+    border-color: var(--color-btn-normal-border);
+    color: var(--color-text) !important;
+    transform: translateY(-1px);
+}
+
+.lien-accounts {
+    color: #0F766E !important;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.15s ease;
+}
+
+.lien-accounts:hover {
+    text-decoration: underline;
+    color: #0D655E !important;
+}
+
+[data-theme="dark"] .lien-accounts {
+    color: #2DD4BF !important;
+}
+
+[data-theme="dark"] .lien-accounts:hover {
+    color: #5EEAD4 !important;
+}
+
+
+/* ==================================================
+   PROFIL ÉTUDIANT & SECTIONS CV
+   Haute lisibilité : suppression des gris délavés,
+   alliance contrastée de noir (#111827) et de vert (#0F766E).
+   ================================================== */
+
+.info-profil {
+    padding: 13px 0;
+    border-bottom: 1.5px solid rgba(15, 118, 110, 0.18);
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    color: #111827;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.info-profil:last-child {
+    border-bottom: none;
+}
+
+.info-profil strong {
+    color: #0F766E;
+    font-weight: 700;
+    min-width: 170px;
+    flex-shrink: 0;
+}
+
+.info-profil a {
+    color: #0F766E;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    overflow-wrap: anywhere;
+}
+
+.info-profil a:hover {
+    color: #115E59;
+}
+
+.info-profil h3 {
+    color: #0F766E;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 14px 0 6px;
+}
+
+[data-theme="dark"] .info-profil {
+    color: #f1f5f9;
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .info-profil strong {
+    color: #2dd4bf;
+}
+
+[data-theme="dark"] .info-profil a {
+    color: #2dd4bf;
+}
+
+[data-theme="dark"] .info-profil h3 {
+    color: #2dd4bf;
+}
+
+.liste-profil {
+    margin: 10px 0 0;
+    padding-left: 22px;
+    color: #111827;
+}
+
+.liste-profil li {
+    color: #111827;
+    margin-bottom: 6px;
+    line-height: 1.5;
+}
+
+[data-theme="dark"] .liste-profil,
+[data-theme="dark"] .liste-profil li {
+    color: #f1f5f9;
+}
+
+div.liste-profil {
+    padding-left: 0;
+}
+
+.element-profil {
+    margin-top: 14px;
+    padding: 16px 20px;
+    background: #ffffff;
+    border: 1.5px solid #0F766E;
+    border-left: 5px solid #0F766E;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(15, 118, 110, 0.08);
+}
+
+[data-theme="dark"] .element-profil {
+    background: rgba(15, 118, 110, 0.12);
+    border-color: rgba(20, 184, 166, 0.4);
+    border-left-color: #14b8a6;
+}
+
+.element-profil h3 {
+    color: #111827;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 6px;
+}
+
+[data-theme="dark"] .element-profil h3 {
+    color: #ffffff;
+}
+
+.element-profil p {
+    color: #111827;
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0 0 6px;
+}
+
+[data-theme="dark"] .element-profil p {
+    color: #e2e8f0;
+}
+
+.element-profil p:last-child {
+    margin-bottom: 0;
+}
+
+.element-profil strong {
+    color: #0F766E;
+}
+
+[data-theme="dark"] .element-profil strong {
+    color: #2dd4bf;
+}
+
+.cv-statut {
+    color: #111827;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+[data-theme="dark"] .cv-statut {
+    color: #cbd5e1;
+}
+
+.cv-offre {
+    margin: 0 0 28px;
+    padding: 24px;
+    background: #ffffff;
+    border: 1.5px solid #0F766E;
+    border-left: 5px solid #0F766E;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(15, 118, 110, 0.08);
+}
+
+[data-theme="dark"] .cv-offre {
+    background: rgba(15, 118, 110, 0.12);
+    border-color: rgba(20, 184, 166, 0.4);
+    border-left-color: #14b8a6;
+}
+
+.cv-offre h2 {
+    color: #111827;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+[data-theme="dark"] .cv-offre h2 {
+    color: #ffffff;
+}
+
+.cv-selection {
+    margin-top: 18px;
+    padding: 18px 22px;
+    border-radius: 10px;
+    background: #ffffff;
+    border: 1.5px solid #0F766E;
+}
+
+[data-theme="dark"] .cv-selection {
+    background: rgba(15, 118, 110, 0.12);
+    border-color: rgba(20, 184, 166, 0.4);
+}
+
+.cv-selection h3 {
+    color: #111827;
+    font-weight: 700;
+    margin: 12px 0 6px;
+    font-size: 17px;
+}
+
+[data-theme="dark"] .cv-selection h3 {
+    color: #ffffff;
+}
+
+.cv-selection ul {
+    color: #111827;
+    margin: 0 0 12px;
+    padding-left: 22px;
+}
+
+[data-theme="dark"] .cv-selection ul {
+    color: #e2e8f0;
+}
+
+.cv-apercu {
+    display: block;
+    width: 100%;
+    min-height: 800px;
+    margin-top: 20px;
+    background: #ffffff;
+    border: 1.5px solid #0F766E;
+    border-radius: 10px;
+}
+
+[data-theme="dark"] .cv-apercu {
+    border-color: rgba(20, 184, 166, 0.4);
+}
+
+.bouton-accounts:disabled,
+.bouton-accounts[aria-disabled="true"] {
+    background: #94a3b8;
+    color: #f1f5f9;
+    opacity: 0.65;
+    cursor: not-allowed;
+    pointer-events: none;
+    box-shadow: none;
+}
+
+
+/* ==================================================
+   ACTIONS ET GROUPES DE BOUTONS (ONGLET MON CV, ETC.)
+   Boutons parfaitement alignés avec espacement propre
+   ================================================== */
+
+.actions-accounts {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+    margin-top: 20px;
+    margin-bottom: 6px;
+}
+
+.actions-accounts form,
+.actions-accounts .form-action-inline {
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+}
+
+.actions-accounts .bouton-accounts {
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    padding: 0 20px;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
+
+
+/* ==================================================
+   ADAPTATION AUX PETITS ÉCRANS
+   ================================================== */
+
+@media (max-width: 800px) {
+    .page-accounts {
+        padding: 8px 0 30px;
+    }
+
+    .carte-accounts {
+        padding: 20px;
+    }
+
+    .entete-accounts h1 {
+        font-size: 28px;
+    }
+
+    .actions-accounts {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .actions-accounts form,
+    .actions-accounts .form-action-inline,
+    .actions-accounts .bouton-accounts {
+        width: 100%;
+    }
+
+    .actions-accounts .bouton-accounts {
+        width: 100%;
+    }
+
+    .entete-formset {
+        flex-direction: column;
+    }
+
+    .bouton-ajouter {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+.champ-form input[type="checkbox"],
+.formulaire-accounts input[type="checkbox"] {
+    width: auto;
+    margin-right: 8px;
+}
+
+#cv-preview[hidden] {
+    display: none;
+}
+
+#cv-preview-document {
+    width: 100%;
+}

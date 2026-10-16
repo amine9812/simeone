@@ -1,0 +1,530 @@
+/* ==================================================
+   PAGE ET CONTENEUR D'OFFRES
+   ================================================== */
+
+.page-offres {
+    color: var(--color-text-main);
+}
+
+.conteneur {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 16px 0 35px;
+}
+
+/* ==================================================
+   TITRE DE LA PAGE
+   ================================================== */
+
+.entete {
+    margin-bottom: 30px;
+}
+
+.entete h1,
+.entete-offre h1 {
+    font-size: 34px;
+    font-weight: 700;
+    color: var(--color-text-main);
+    margin: 0 0 10px;
+}
+
+.entete > p:last-child {
+    color: var(--color-text-muted);
+}
+
+.etiquette {
+    color: #0F766E !important;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+[data-theme="dark"] .etiquette {
+    color: #2dd4bf !important;
+}
+
+/* ==================================================
+   CARTES ET SURFACES
+   ================================================== */
+
+.filtres,
+.offre,
+.fiche {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    box-shadow: 0 4px 16px var(--color-card-shadow);
+    transition: all var(--transition-fast);
+}
+
+.offre:hover {
+    border-color: var(--color-primary-border);
+    box-shadow: 0 8px 24px var(--color-card-shadow);
+}
+
+/* ==================================================
+   FORMULAIRE DE RECHERCHE & FILTRES
+   ================================================== */
+
+.filtres {
+    padding: 24px;
+    margin-bottom: 30px;
+}
+
+.grille-filtres {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr auto;
+    gap: 15px;
+    align-items: end;
+}
+
+.champ {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.champ label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text-main);
+}
+
+.champ input,
+.champ select {
+    height: 46px;
+    padding: 0 12px;
+    background: var(--color-input-bg);
+    color: var(--color-text-main);
+    border: 1.5px solid var(--color-input-border);
+    border-radius: 8px;
+    transition: all var(--transition-fast);
+}
+
+.champ input:focus,
+.champ select:focus {
+    outline: none;
+    border-color: var(--color-input-focus);
+    box-shadow: 0 0 0 3px var(--color-primary-subtle);
+}
+
+.champ option {
+    background: var(--color-surface);
+    color: var(--color-text-main);
+}
+
+.effacer {
+    display: inline-block;
+    margin-top: 15px;
+    color: #0F766E;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.effacer:hover {
+    color: #115E59;
+    text-decoration: underline;
+}
+
+/* ==================================================
+   BOUTONS
+   ================================================== */
+
+.bouton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 20px;
+    background: var(--color-btn-normal-bg);
+    color: var(--color-btn-normal-text) !important;
+    border: 1.5px solid var(--color-btn-normal-border);
+    border-radius: 8px;
+    text-decoration: none;
+    text-align: center;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 8px var(--color-btn-normal-shadow);
+    transition: all var(--transition-fast);
+}
+
+.bouton:hover {
+    background: var(--color-btn-normal-hover-bg);
+    border-color: var(--color-btn-normal-hover-border);
+    color: var(--color-btn-normal-text) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px var(--color-btn-normal-shadow);
+}
+
+/* ==================================================
+   LISTE DES OFFRES
+   ================================================== */
+
+.resultats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.resultats h2 {
+    font-size: 21px;
+    font-weight: 700;
+    color: var(--color-text-main);
+    margin: 0;
+}
+
+.resultats span {
+    color: var(--color-text-muted);
+}
+
+.liste {
+    display: grid;
+    gap: 16px;
+}
+
+.offre {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+    padding: 24px;
+}
+
+.contenu-offre {
+    flex: 1;
+}
+
+.entreprise {
+    color: #0F766E;
+    font-weight: 700;
+    margin: 0 0 6px;
+}
+
+[data-theme="dark"] .entreprise {
+    color: #2dd4bf;
+}
+
+.offre h3 {
+    margin: 0 0 10px;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-text-main);
+}
+
+.description {
+    color: var(--color-text-muted);
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.informations {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.info {
+    padding: 6px 12px;
+    background: var(--color-badge-bg);
+    color: var(--color-badge-text);
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    font-size: 13.5px;
+    font-weight: 500;
+}
+
+.vide {
+    padding: 45px;
+    text-align: center;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    color: var(--color-text-muted);
+}
+
+/* ==================================================
+   PAGE DE DÉTAIL D'OFFRE
+   ================================================== */
+
+.retour {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #0F766E;
+    text-decoration: none;
+    font-weight: 600;
+    margin-bottom: 14px;
+    transition: all var(--transition-fast);
+}
+
+.retour:hover {
+    color: #115E59;
+    transform: translateX(-2px);
+}
+
+[data-theme="dark"] .retour {
+    color: #2dd4bf;
+}
+
+.fiche {
+    margin-top: 15px;
+    padding: 32px;
+}
+
+.separateur {
+    border: 0;
+    border-top: 1px solid var(--color-border);
+    margin: 25px 0;
+}
+
+.detail {
+    display: grid;
+    grid-template-columns: 2fr 1.1fr;
+    gap: 32px;
+}
+
+.section-offre {
+    margin-bottom: 30px;
+}
+
+.section-offre h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-text-main);
+    margin-bottom: 12px;
+}
+
+.texte {
+    color: var(--color-text-muted);
+    line-height: 1.7;
+}
+
+.section-offre a {
+    color: var(--color-primary);
+}
+
+/* Encadré candidature */
+.candidature {
+    padding: 24px;
+    background: var(--color-surface-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: 14px;
+}
+
+.candidature > p {
+    color: var(--color-text-muted);
+}
+
+.choix-cv-offre,
+.confirmation-candidature {
+    display: grid;
+    gap: 12px;
+    margin: 16px 0;
+}
+
+.choix-cv-offre select {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1.5px solid var(--color-input-border);
+    border-radius: 8px;
+    color: var(--color-text-main);
+    background: var(--color-input-bg);
+    font-size: 14px;
+}
+
+.choix-cv-offre select:focus {
+    outline: none;
+    border-color: var(--color-input-focus);
+}
+
+.choix-cv-offre .bouton,
+.confirmation-candidature .bouton {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 16px;
+    font-weight: 600;
+}
+
+/* Boutons d'options du CV (Aperçu principal, Télécharger) */
+.liens-apercu-cv {
+    display: flex;
+    gap: 12px;
+    margin: 12px 0 14px;
+}
+
+.bouton-secondaire {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 14px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-btn-normal-text) !important;
+    background: var(--color-btn-normal-bg);
+    border: 1.5px solid var(--color-btn-normal-border);
+    border-radius: 8px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 2px 8px var(--color-btn-normal-shadow);
+    transition: all var(--transition-fast);
+}
+
+.bouton-secondaire:hover {
+    background: var(--color-btn-normal-hover-bg);
+    border-color: var(--color-btn-normal-hover-border);
+    color: var(--color-btn-normal-text) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px var(--color-btn-normal-shadow);
+}
+
+/* Bouton Préparer mon CV pour cette offre */
+.action-preparer-cv {
+    margin-top: 10px;
+    margin-bottom: 8px;
+}
+
+.bouton-preparer-cv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 11px 14px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-btn-normal-text) !important;
+    background: var(--color-btn-normal-bg);
+    border: 1.5px solid var(--color-btn-normal-border);
+    border-radius: 8px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 2px 8px var(--color-btn-normal-shadow);
+    transition: all var(--transition-fast);
+}
+
+.bouton-preparer-cv:hover {
+    background: var(--color-btn-normal-hover-bg);
+    border-color: var(--color-btn-normal-hover-border);
+    color: var(--color-btn-normal-text) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px var(--color-btn-normal-shadow);
+}
+
+/* Boutons d'acceptation / validation (vert clair doux, agréable aux yeux) */
+.bouton.bouton-accepter,
+.bouton-accepter,
+.bouton-valider {
+    background: var(--color-btn-accept-bg) !important;
+    border: 1.5px solid var(--color-btn-accept-border) !important;
+    color: var(--color-btn-accept-text) !important;
+    box-shadow: 0 2px 10px var(--color-btn-accept-shadow) !important;
+}
+
+.bouton.bouton-accepter:hover,
+.bouton-accepter:hover,
+.bouton-valider:hover {
+    background: var(--color-btn-accept-hover-bg) !important;
+    border-color: var(--color-btn-accept-hover-border) !important;
+    color: var(--color-btn-accept-text) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px var(--color-btn-accept-shadow) !important;
+}
+
+/* Bouton Postuler à cette offre dans Votre candidature (action d'acceptation / postulation -> vert clair) */
+.action-postuler {
+    margin: 14px 0 6px;
+}
+
+.bouton-postuler {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 12px 18px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-btn-accept-text) !important;
+    background: var(--color-btn-accept-bg);
+    border: 1.5px solid var(--color-btn-accept-border);
+    border-radius: 8px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 2px 10px var(--color-btn-accept-shadow);
+    transition: all var(--transition-fast);
+}
+
+.bouton-postuler:hover {
+    background: var(--color-btn-accept-hover-bg);
+    border-color: var(--color-btn-accept-hover-border);
+    color: var(--color-btn-accept-text) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px var(--color-btn-accept-shadow);
+}
+
+.candidature a:not(.bouton):not(.bouton-secondaire):not(.bouton-preparer-cv):not(.bouton-postuler),
+.offre a:not(.bouton):not(.bouton-secondaire):not(.bouton-preparer-cv):not(.bouton-postuler) {
+    color: var(--color-primary);
+}
+
+.indisponible {
+    width: 100%;
+    padding: 12px;
+    background: var(--color-surface-muted);
+    color: var(--color-text-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.source {
+    margin-top: 18px;
+    font-size: 13px;
+    color: var(--color-text-subtle);
+}
+
+/* Parcours de candidature */
+.etapes-candidature { padding-left: 1.3rem; margin: 1.2rem 0; }
+.etapes-candidature li { margin-bottom: 1.35rem; }
+.etapes-candidature li p { margin: .45rem 0; color: var(--color-text-muted); }
+.etapes-candidature a { overflow-wrap: anywhere; }
+.candidature .bouton { max-width: 100%; }
+.contenu-detail { min-width: 0; }
+
+/* ==================================================
+   ADAPTATION AUX PETITS ÉCRANS
+   ================================================== */
+
+@media (max-width: 800px) {
+    .fiche { padding: 20px; }
+    .conteneur { padding: 8px 0 30px; }
+
+    .grille-filtres {
+        grid-template-columns: 1fr;
+    }
+
+    .grille-filtres .bouton {
+        width: 100%;
+    }
+
+    .offre {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .detail {
+        grid-template-columns: 1fr;
+    }
+
+    .entete h1,
+    .entete-offre h1 {
+        font-size: 26px;
+    }
+}

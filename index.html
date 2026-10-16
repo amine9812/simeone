@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StagePilot — Plateforme intelligente de stages (3iL Ingénieurs)</title>
+    
+    <!-- Google Fonts: Inter (StagePilot Native) & JetBrains Mono (Code Inspector) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5.3.3 (StagePilot Commun) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Stylesheets Authentiques du Projet StagePilot (web_3il) -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/offers.css">
+    <link rel="stylesheet" href="css/applications.css">
+    <link rel="stylesheet" href="css/accounts.css">
+    <link rel="stylesheet" href="css/schools.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/stagepilot.css">
+
+    <!-- Inspecteur de Code & Outils de Soutenance Flottants (Non-intrusifs) -->
+    <link rel="stylesheet" href="css/inspector.css">
+</head>
+<body>
+
+    <!-- ======================================================================
+         1. NAVBAR AUTHENTIQUE STAGEPILOT (100% Fidèle au Template Django)
+         ====================================================================== -->
+    <nav class="navbar navbar-expand-lg navbar-glass sticky-top">
+        <div class="container navbar-container">
+
+            <a class="navbar-brand" href="javascript:void(0)" onclick="window.app.navigate(window.app.currentPersona === 'ecole' ? 'tableau_de_bord_ecole' : 'tableau_de_bord_etudiant')" data-inspect="nav_brand">
+                StagePilot
+            </a>
+
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#mainNavbar"
+                aria-controls="mainNavbar"
+                aria-expanded="false"
+                aria-label="Afficher la navigation"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="mainNavbar">
+                <!-- Onglets de navigation centrés (Générés dynamiquement selon le persona) -->
+                <ul class="navbar-nav mx-auto align-items-lg-center navbar-center-tabs" id="mainNavbarTabs">
+                    <!-- Populated by window.app.renderNavbar() -->
+                </ul>
+
+                <!-- Actions alignées à droite : Thème & Connexion/Déconnexion -->
+                <div class="navbar-actions d-flex align-items-center gap-2" id="mainNavbarActions">
+                    <!-- Populated by window.app.renderNavbar() -->
+                </div>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- ======================================================================
+         2. CONTENU PRINCIPAL STAGEPILOT (Container Natif Bootstrap / Django)
+         ====================================================================== -->
+    <main class="container main-content" id="stagepilotMain">
+        <!-- Rendu instantané de l'écran (Tableau de bord étudiant par défaut) -->
+    </main>
+
+    <!-- ======================================================================
+         3. FOOTER AUTHENTIQUE STAGEPILOT
+         ====================================================================== -->
+    <footer class="app-footer">
+        <div class="container text-center">
+            <p class="mb-0">
+                © 2026 StagePilot — Plateforme intelligente de stages
+            </p>
+        </div>
+    </footer>
+
+    <!-- ======================================================================
+         4. FLOATING DEFENSE DOCK (Barre d'outils de soutenance discrète)
+         ====================================================================== -->
+    <div class="sp-defense-dock" id="defenseDock">
+        <!-- Toggle Mode Soutenance (Inspecteur) vs Mode Normal (Navigation Démo) -->
+        <button class="dock-pill dock-pill-toggle is-active" id="dockInspectorToggle" title="Basculer entre Mode Soutenance et Navigation Normale">
+            <span>🔍</span> Mode Soutenance (Inspecteur ACTIF)
+        </button>
+
+        <!-- Sélecteur de Persona -->
+        <select class="dock-persona-select" id="dockPersonaSelect" title="Changer d'utilisateur simulé">
+            <option value="etudiant" selected>🧑 Étudiant (Lina Martin)</option>
+            <option value="ecole">🏛️ École (3iL Limoges)</option>
+            <option value="visiteur">👤 Visiteur anonyme</option>
+        </select>
+
+        <!-- Sélecteur direct d'écran -->
+        <select class="dock-persona-select" id="dockScreenSelect" title="Naviguer directement vers un écran">
+            <optgroup label="Espace Étudiant">
+                <option value="tableau_de_bord_etudiant" selected>Tableau de bord (/comptes/tableau-de-bord/)</option>
+                <option value="liste_offres">Offres de stage & IA (/offres/)</option>
+                <option value="detail_offre">Fiche d'une offre (/offres/1/)</option>
+                <option value="mes_candidatures">Mes candidatures & validation (/candidatures/)</option>
+                <option value="mon_cv">Mon CV & IA Groq (/comptes/cv/)</option>
+                <option value="mon_profil">Mon profil 3iL (/comptes/profil/)</option>
+            </optgroup>
+            <optgroup label="Espace Authentification">
+                <option value="connexion">Connexion (/comptes/connexion/)</option>
+                <option value="inscription_choix">Choix inscription (/comptes/inscription/choix/)</option>
+                <option value="inscription_ecole">Inscription école (/comptes/inscription/ecole/)</option>
+            </optgroup>
+            <optgroup label="Espace Établissement (3iL)">
+                <option value="tableau_de_bord_ecole">Tableau de bord école (/ecole/)</option>
+                <option value="liste_etudiants">Liste des étudiants (/ecole/etudiants/)</option>
+                <option value="notifications_ecole">Centre de notifications (/ecole/notifications/)</option>
+            </optgroup>
+        </select>
+
+        <!-- Bouton Guide & Soutenance -->
+        <button class="dock-pill dock-pill-guide" id="dockOpenGuide" title="Ouvrir le guide complet de soutenance (Architecture, Arborescence, Traitements, OWASP, Questions Prof)">
+            <span>🏛️</span> Guide & Soutenance
+        </button>
+
+        <!-- Bouton Voyage d'une Requête & Arbre d'Activité Doré -->
+        <button class="dock-pill" id="dockOpenJourney" style="background: linear-gradient(135deg, #d97706 0%, #b45309 50%, #78350f 100%); color: #fef3c7; border: 1px solid #f59e0b; box-shadow: 0 0 16px rgba(245, 158, 11, 0.45);" title="Ouvrir le simulateur d'arbre d'activité doré et de cycle de vie">
+            <span>⚡</span> Simulateur d'Activité (Arbre Doré)
+        </button>
+
+        <!-- Recherche Globale -->
+        <button class="dock-search-btn" id="dockSearchBtn" title="Recherche rapide (Ctrl + K)">
+            <span>🔍</span> <span class="hub-kbd" style="padding: 0.1rem 0.35rem; font-size: 0.7rem;">Ctrl K</span>
+        </button>
+
+        <!-- Réduire le Dock -->
+        <button class="dock-search-btn" id="dockMinimizeBtn" title="Masquer le dock pour la démonstration pure">
+            <span>✕</span>
+        </button>
+    </div>
+
+    <!-- Déclencheur Flottant de Restauration (Visible seulement si dock minimisé) -->
+    <button id="dockFloatingTrigger" title="Afficher les outils de soutenance">
+        <span>⚡</span> Soutenance & Inspecteur
+    </button>
+
+    <!-- ======================================================================
+         5. FLOATING INSPECTOR TOOLTIP (HUD de survol)
+         ====================================================================== -->
+    <div id="inspectorTooltip"></div>
+
+    <!-- ======================================================================
+         6. TIROIR LATÉRAL D'INSPECTION DE CODE (Slide-Over Drawer)
+         ====================================================================== -->
+    <div class="sp-drawer-backdrop" id="drawerBackdrop"></div>
+    <aside class="sp-drawer" id="codeDrawer" aria-labelledby="drawerElementTitle">
+        <div class="sp-drawer-header">
+            <div class="sp-drawer-title">
+                <span class="sp-tag" id="drawerElementType" style="background: rgba(99, 102, 241, 0.2); color: #818cf8; margin-bottom: 0.25rem; display: inline-block; padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: 700; font-size: 0.75rem;">BOUTON</span>
+                <h2 id="drawerElementTitle">Nom de l'élément</h2>
+                <p>Inspection du code source et cycle de vie du traitement associé</p>
+                <!-- Ruban chemin express -->
+                <div class="insp-breadcrumb-ribbon" id="drawerBreadcrumbBar">
+                    <!-- Rendu dynamique -->
+                </div>
+            </div>
+            <button class="sp-drawer-close" id="drawerClose" aria-label="Fermer le tiroir d'inspection">×</button>
+        </div>
+
+        <div class="sp-drawer-body">
+            <!-- Synthèse Rapide / En clair pour le Jury -->
+            <div class="insp-card insp-summary-card">
+                <div class="insp-card-title insp-summary-title">🎯 En clair : À quoi sert cet élément ?</div>
+                <div class="insp-summary-body" id="drawerPlainSummary">
+                    <!-- Rendu dynamique -->
+                </div>
+            </div>
+
+            <!-- Métadonnées Localisation avec Couleurs Distinctes -->
+            <div class="insp-card insp-location-card">
+                <div class="insp-card-title">📍 Emplacement dans le Code Source</div>
+                <div class="insp-meta-grid">
+                    <div class="insp-meta-item insp-meta-template">
+                        <div class="insp-meta-label">📄 Fichier Template HTML</div>
+                        <div class="insp-meta-val" id="drawerMetaTemplate">templates/offers/liste_offres.html</div>
+                    </div>
+                    <div class="insp-meta-item insp-meta-url">
+                        <div class="insp-meta-label">🔗 Route URL Django</div>
+                        <div class="insp-meta-val" id="drawerMetaUrl">offers:liste_offres → /offres/</div>
+                    </div>
+                    <div class="insp-meta-item insp-meta-view">
+                        <div class="insp-meta-label">🐍 Fonction Vue Python</div>
+                        <div class="insp-meta-val" id="drawerMetaView">offers.views.liste_offres</div>
+                    </div>
+                    <div class="insp-meta-item insp-meta-file">
+                        <div class="insp-meta-label">📁 Fichier Back-end</div>
+                        <div class="insp-meta-val" id="drawerMetaFile">offers/views.py</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cycle de traitement détaillé -->
+            <div class="insp-card insp-flow-card">
+                <div class="insp-card-title">⚙️ Que se passe-t-il exactement quand l'utilisateur clique ?</div>
+                <div class="insp-flow" id="drawerTreatmentSteps">
+                    <!-- Rendu dynamique des étapes -->
+                </div>
+            </div>
+
+            <!-- Extrait de Code Source Réel Verbatim avec Coloration Syntaxique -->
+            <div class="insp-card insp-code-card">
+                <div class="insp-card-title">💻 Code Source Python Verbatim (web_3il)</div>
+                <div class="insp-code-block">
+                    <div class="insp-code-bar">
+                        <div class="insp-code-bar-left">
+                            <span class="mac-dot dot-red"></span>
+                            <span class="mac-dot dot-yellow"></span>
+                            <span class="mac-dot dot-green"></span>
+                            <span class="insp-code-filename" id="drawerCodeFilename">Extrait exact du projet web_3il</span>
+                        </div>
+                        <button class="insp-code-copy" id="drawerCodeCopyBtn" onclick="copyDrawerCode()">📋 Copier</button>
+                    </div>
+                    <pre class="insp-code-pre"><code id="drawerCodeSnippet"># Code Python</code></pre>
+                </div>
+            </div>
+
+            <!-- Boîte Question Prof & Réponse Préparée (Profil Non-Technique) -->
+            <div class="insp-card insp-qa-card">
+                <div class="insp-card-title" style="color: #fbbf24;">🎓 Question du Professeur à l'Oral (Profil Non-Technique)</div>
+                <p class="insp-card-subtitle">Questions concrètes posées par un évaluateur non-technique : où est le code et comment le cas est-il traité ?</p>
+                <div class="insp-qa-box" id="drawerOralQa">
+                    <!-- Rendu dynamique -->
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ======================================================================
+         7. GUIDE & SOUTENANCE MODAL OVERLAY (Plein écran avec onglets)
+         ====================================================================== -->
+    <div class="sp-guide-overlay" id="guideOverlay">
+        <header class="sp-guide-topbar">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <span style="font-size: 1.5rem;">✈️</span>
+                <div>
+                    <h3 style="font-size: 1.05rem; font-weight: 800; margin: 0; color: white;">StagePilot 3iL — Guide de Soutenance</h3>
+                    <p style="font-size: 0.75rem; color: #94a3b8; margin: 0;">Plateforme d'explication interactive du code source & de l'architecture</p>
+                </div>
+            </div>
+
+            <nav>
+                <ul class="sp-guide-nav">
+                    <li><button class="sp-guide-tab active" data-guide-tab="architecture">🏛️ Architecture & Stack Exhaustive</button></li>
+                    <li><button class="sp-guide-tab" data-guide-tab="tree">🌳 Explorateur VS Code & Métaphores</button></li>
+                    <li><button class="sp-guide-tab" data-guide-tab="treatments">⚙️ Les 12 Grands Traitements Métier</button></li>
+                    <li><button class="sp-guide-tab" data-guide-tab="security">🛡️ Sécurité OWASP</button></li>
+                    <li><button class="sp-guide-tab" data-guide-tab="simulation">⚡ Simulateur d'Activité & Arbre Doré</button></li>
+                    <li><button class="sp-guide-tab" data-guide-tab="defense">🎓 Questions Pièges Prof</button></li>
+                </ul>
+            </nav>
+
+            <button class="sp-drawer-close" id="guideCloseBtn" title="Fermer le guide">×</button>
+        </header>
+
+        <main class="sp-guide-content">
+            <!-- Onglet 1: Architecture Exhaustive -->
+            <div class="guide-tab-pane" id="guide_pane_architecture">
+                <div class="sp-guide-hero">
+                    <span class="sp-guide-badge">Architecture & Décisions Logicielles</span>
+                    <h2>Toutes les Technologies du Projet & Justifications Exhaustives</h2>
+                    <p>Analyse systématique de chaque brique technologique, bibliothèque Python, base de données, infrastructure cloud et API externe de StagePilot : son rôle exact et les justifications d'ingénierie logicielle pour l'oral 3iL.</p>
+                </div>
+
+                <div id="guideArchitectureContainer">
+                    <!-- Rendu dynamique par catégorie (Backend, Database, Cloud, IA, APIs, Frontend, Sécurité) -->
+                </div>
+            </div>
+
+            <!-- Onglet 2: Arborescence Interactive façon VS Code -->
+            <div class="guide-tab-pane" id="guide_pane_tree" style="display: none;">
+                <div class="sp-guide-hero">
+                    <span class="sp-guide-badge">Cartographie Interactive du Code</span>
+                    <h2>Explorateur Interactif façon VS Code & Métaphores de la Vie Réelle</h2>
+                    <p>Dépliez les dossiers comme dans votre éditeur favori grâce aux arcs fléchés (carets). Chaque fichier est expliqué avec son rôle technique précis et une analogie intuitive de la vie réelle pour briller devant le jury.</p>
+                </div>
+
+                <div class="tree-container">
+                    <div class="tree-filter-bar">
+                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                            <div style="font-size: 0.95rem; font-weight: 800; color: #ffffff; display: flex; align-items: center; gap: 0.45rem;">
+                                <span style="font-size: 1.2rem;">📁</span> PROJET WEB_3IL
+                            </div>
+                            <span class="sp-tree-stats" id="treeFileCount">58 fichiers documentés</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+                            <button class="sp-tree-action-btn" id="treeExpandAllBtn" title="Tout déplier">📂 Tout Déplier</button>
+                            <button class="sp-tree-action-btn" id="treeCollapseAllBtn" title="Tout replier">📁 Tout Replier</button>
+                            <input type="text" class="tree-search-input" id="treeSearchInput" placeholder="🔍 Filtrer un fichier, dossier, mot-clé ou analogie (ex: access, jsearch, cv, notaire...)">
+                        </div>
+                    </div>
+
+                    <div class="vscode-explorer-wrapper">
+                        <!-- Dynamic VS Code Folder & File Tree -->
+                        <div class="vscode-tree-root" id="guideTreeList">
+                            <!-- Rendu dynamique par dossiers et fichiers -->
+                        </div>
+
+                        <!-- Active File Inspector Drawer (Apparaît au clic d'un fichier) -->
+                        <div class="vscode-file-preview-panel" id="treeFilePreviewPanel" style="display: none;">
+                            <!-- Détails du fichier sélectionné -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Onglet 3: Traitements avec Extraits de Code -->
+            <div class="guide-tab-pane" id="guide_pane_treatments" style="display: none;">
+                <div class="sp-guide-hero">
+                    <span class="sp-guide-badge">Algorithmes, Code & Flux de Données</span>
+                    <h2>Les 12 Grands Traitements Métier de StagePilot</h2>
+                    <p>Cycle de vie complet de la plateforme : algorithmes pas-à-pas et véritables extraits de code source Python / Django / SQL tirés du projet.</p>
+                </div>
+
+                <!-- Panneau de Contrôle & Navigation des 12 Traitements (Sans Défilement Infini) -->
+                <div class="sp-treatments-hub">
+                    <!-- Bandeau sélecteur horizontal des 12 traitements avec couleurs thématiques -->
+                    <div class="sp-tr-selector-strip" id="treatmentsPillsBar">
+                        <!-- Rendu dynamique des 12 boutons avec leurs couleurs thématiques -->
+                    </div>
+
+                    <!-- Barre d'outils et pagination fluide -->
+                    <div class="sp-tr-toolbar">
+                        <div class="sp-tr-pagination">
+                            <button class="sp-tr-ctrl-btn" id="trPrevBtn" onclick="app.prevTreatment()" title="Traitement précédent">◀ Précédent</button>
+                            <span class="sp-tr-status-pill" id="trCurrentBadge">Traitement 1 sur 12</span>
+                            <button class="sp-tr-ctrl-btn" id="trNextBtn" onclick="app.nextTreatment()" title="Traitement suivant">Suivant ▶</button>
+                        </div>
+                        <div class="sp-tr-view-modes">
+                            <button class="sp-tr-mode-btn active" id="trViewSingleBtn" onclick="app.setTreatmentViewMode('single')">
+                                🎯 Vue Fiche Unique (Recommandé Oral)
+                            </button>
+                            <button class="sp-tr-mode-btn" id="trViewAllBtn" onclick="app.setTreatmentViewMode('all')">
+                                📜 Vue Déroulée Complète
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Conteneur principal des fiches de traitement -->
+                <div id="guideTreatmentsList" class="sp-treatments-deck mode-single">
+                    <!-- Rendu dynamique des 12 traitements avec blocs de code et couleurs vives -->
+                </div>
+            </div>
+
+            <!-- Onglet 4: Sécurité OWASP -->
+            <div class="guide-tab-pane" id="guide_pane_security" style="display: none;">
+                <div class="sp-guide-hero">
+                    <span class="sp-guide-badge">Défense en Profondeur</span>
+                    <h2>Principes de Sécurité & Conformité OWASP</h2>
+                    <p>Comment l'application protège l'intégrité des données des étudiants et des établissements partenaires.</p>
+                </div>
+
+                <div class="sp-guide-grid-3" id="guideSecurityList">
+                    <!-- Rendu dynamique -->
+                </div>
+            </div>
+
+            <!-- Onglet 5: Questions Prof -->
+            <div class="guide-tab-pane" id="guide_pane_defense" style="display: none;">
+                <div class="sp-guide-hero">
+                    <span class="sp-guide-badge">Simulateur d'Interrogation</span>
+                    <h2>Questions Pièges Possibles du Professeur</h2>
+                    <p>Préparez vos réponses aux questions les plus pointues sur le code, les transactions, l'IA et l'architecture.</p>
+                </div>
+
+                <div id="guideQuestionsList" style="max-width: 900px; margin: 0 auto;">
+                    <!-- Rendu dynamique -->
+                </div>
+            </div>
+
+            <!-- Onglet 6: Simulateur d'Activité & Flux Doré -->
+            <div class="guide-tab-pane" id="guide_pane_simulation" style="display: none;">
+                <div class="sp-guide-hero" style="background: linear-gradient(135deg, rgba(217, 119, 6, 0.18) 0%, rgba(180, 83, 9, 0.06) 100%); border: 1.5px solid rgba(245, 158, 11, 0.4); box-shadow: 0 8px 32px rgba(0,0,0,0.4);">
+                    <span class="sp-guide-badge" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: #000; font-weight: 800;">Conception UML & Moteur Graphique</span>
+                    <h2 style="color: #fbbf24; text-shadow: 0 0 20px rgba(245, 158, 11, 0.35);">Arbre d'Activité Doré & Traçabilité Complète d'une Requête</h2>
+                    <p style="color: #fef3c7; max-width: 850px; margin: 0.5rem auto 1.25rem;">
+                        Explorez le cycle de vie de chaque action sous forme d'un <strong>arbre d'activité doré</strong> complet : conditions logiques IF/ELSE, branches d'échec sécurisées, opérations concurrentes (Fork/Join) et verrous SQL de transactions.
+                    </p>
+                    <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+                        <button class="sp-ctrl-btn btn-play" onclick="app.openJourney()" style="padding: 0.65rem 1.6rem; font-size: 0.95rem; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: #090e17; font-weight: 800; border: 1px solid #fbbf24; box-shadow: 0 0 25px rgba(245, 158, 11, 0.55); border-radius: 8px; cursor: pointer;">
+                            <span>⚡</span> Lancer le Simulateur d'Arbre Doré
+                        </button>
+                    </div>
+                </div>
+
+                <div id="guideSimulationOverviewCards" style="margin-top: 2rem;">
+                    <!-- Rendu dynamique par app.js -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- ======================================================================
+         8. LIVE REQUEST JOURNEY MODAL (Simulateur d'Activité & Arbre Doré)
+         ====================================================================== -->
+    <div class="sp-journey-modal" id="requestJourneyModal">
+        <!-- TOPBAR HAUTE PERFORMANCE -->
+        <header class="sp-journey-topbar">
+            <div class="sp-journey-title">
+                <span style="font-size: 1.4rem;">⚡</span>
+                <div>
+                    <h2>Simulateur d'Activité & Voyage de Requête <span class="sp-journey-badge golden-badge">Arbre UML & Décisions (3iL)</span></h2>
+                </div>
+            </div>
+
+            <!-- Boutons de Mode & Fermeture -->
+            <div style="display: flex; align-items: center; gap: 0.6rem;">
+                <button class="sp-view-mode-pill active" id="btnShowCatalog" title="Retourner au catalogue des séquences et actions">
+                    <span>🗂️</span> Choisir une Action
+                </button>
+                <div class="sp-subview-toggle" id="simulationViewModeToggle">
+                    <button class="sp-subview-btn active" id="btnViewTreeMode" title="Afficher l'Arbre d'Activité Doré">
+                        <span>🌳</span> Arbre Doré
+                    </button>
+                    <button class="sp-subview-btn" id="btnViewPipelineMode" title="Afficher le pipeline linéaire fichier à fichier">
+                        <span>📏</span> Pipeline Linéaire
+                    </button>
+                </div>
+                <button class="sp-drawer-close" id="journeyCloseBtn" title="Fermer le simulateur">×</button>
+            </div>
+        </header>
+
+        <!-- ==================================================================
+             ÉCRAN 1 : CATALOGUE DE SÉLECTION DES ACTIONS (Séquenceur de Démo)
+             ================================================================== -->
+        <div class="golden-catalog-screen" id="journeyCatalogScreen">
+            <div class="golden-catalog-hero">
+                <span class="golden-pill-hero">SÉQUENCEUR DE DÉMONSTRATION D'ARCHITECTURE</span>
+                <h1>Choisissez l'Action Métier à Simuler</h1>
+                <p>
+                    Chaque action génère un <strong>Arbre d'Activité Doré</strong> interactif : conditions logiques IF/ELSE, branches d'échec de sécurité, opérations simultanées (Fork/Join) et verrous SQL PostgreSQL.
+                </p>
+            </div>
+
+            <!-- Grille des 6 actions avec cartes dorées -->
+            <div class="golden-catalog-grid" id="journeyCatalogGrid">
+                <!-- Rendu dynamique par app.js -->
+            </div>
+        </div>
+
+        <!-- ==================================================================
+             ÉCRAN 2 : ARBRE D'ACTIVITÉ & SIMULATION ACTIVE
+             ================================================================== -->
+        <div class="golden-simulation-screen" id="journeySimulationScreen" style="display: none;">
+            <!-- BANDEAU DE CONTRÔLES SUPÉRIEUR -->
+            <div class="sp-sim-controlbar">
+                <div class="sp-sim-info">
+                    <button class="sp-btn-back-catalog" id="btnBackToCatalog" title="Revenir au choix de l'action">
+                        <span>◀</span> Autre action
+                    </button>
+                    <span class="sp-method-badge" id="journeyActiveMethod">POST</span>
+                    <span class="sp-endpoint-url" id="journeyActiveEndpoint">/candidatures/1/confirmer-stage/</span>
+                    <span class="sp-sim-title-strong" id="journeyActiveTitle">1. Confirmer son stage officiel</span>
+                </div>
+
+                <!-- Contrôles de lecture & Pas-à-Pas -->
+                <div class="sp-journey-controls">
+                    <div class="sp-journey-btn-group">
+                        <button class="sp-ctrl-btn" id="journeyPrevBtn" title="Étape précédente">◀ Précédent</button>
+                        <button class="sp-ctrl-btn btn-play" id="journeyPlayBtn" title="Lancer / Mettre en pause la simulation"><span>▶</span> Lancer la simulation</button>
+                        <button class="sp-ctrl-btn" id="journeyNextBtn" title="Étape suivante">Suivant ▶</button>
+                        <button class="sp-ctrl-btn" id="journeyResetBtn" title="Revenir au début">↺ Début</button>
+                    </div>
+
+                    <div class="sp-journey-btn-group">
+                        <div class="sp-speed-group">
+                            <button class="sp-speed-btn" data-speed="0.5">0.5x</button>
+                            <button class="sp-speed-btn active" data-speed="1">1x</button>
+                            <button class="sp-speed-btn" data-speed="2">2x</button>
+                        </div>
+                        <span class="sp-step-counter-pill golden-counter" id="journeyStepCounterPill">Étape 1 / 8</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LÉGENDE DE L'ARBRE D'ACTIVITÉ -->
+            <div class="golden-tree-legend">
+                <span class="legend-item"><span class="legend-dot dot-standard"></span> Étape Standard</span>
+                <span class="legend-item"><span class="legend-dot dot-decision"></span> Condition IF / ELSE</span>
+                <span class="legend-item"><span class="legend-dot dot-fork"></span> Parallélisme (Fork/Join)</span>
+                <span class="legend-item"><span class="legend-dot dot-sql"></span> Mutation BDD SQL</span>
+                <span class="legend-item"><span class="legend-dot dot-else"></span> Rejet / Sécurité</span>
+                <span class="legend-item" style="color: #f59e0b; font-weight: 800;"><span style="font-size: 1rem; line-height: 0.8;">⚡</span> Trajet Doré (Ligne Active)</span>
+                <span class="legend-item"><span class="legend-hint">💡 Cliquez sur un nœud pour inspecter son code Python & SQL</span></span>
+            </div>
+
+            <!-- CONTENEUR DES DEUX MODES DE VUE (Arbre vs Pipeline) -->
+            <div class="golden-views-container" style="position: relative;">
+                <!-- Barre d'outils CAD / StarUML flottante : Zoom & Vue Globale (Fixée en haut à droite) -->
+                <div class="tree-canvas-toolbar" id="treeCanvasToolbar">
+                    <div class="tct-group">
+                        <button class="tct-btn" id="tctZoomOutBtn" title="Dézoomer (−15%)" aria-label="Dézoomer">
+                            <span>−</span>
+                        </button>
+                        <button class="tct-badge" id="tctZoomLevelBtn" title="Cliquer pour réinitialiser le zoom à 100%">
+                            <span id="tctZoomLevelText">100%</span>
+                        </button>
+                        <button class="tct-btn" id="tctZoomInBtn" title="Zoomer (+15%)" aria-label="Zoomer">
+                            <span>+</span>
+                        </button>
+                    </div>
+
+                    <div class="tct-separator"></div>
+
+                    <div class="tct-group">
+                        <button class="tct-btn tct-btn-wide" id="tctFitViewBtn" title="Vue globale (Adapter l'arbre entier à l'écran sans défilement)">
+                            <span>⛶</span> Vue globale
+                        </button>
+                        <button class="tct-btn tct-btn-wide" id="tctResetZoomBtn" title="Rétablir l'échelle 1:1 normale">
+                            <span>↺</span> 100%
+                        </button>
+                    </div>
+
+                    <div class="tct-separator"></div>
+
+                    <div class="tct-group">
+                        <span class="tct-hint-label">
+                            <span>🖱️</span> Glisser pour déplacer · Ctrl+Molette pour zoomer
+                        </span>
+                    </div>
+                </div>
+
+                <!-- 1. VUE ARBRE D'ACTIVITÉ DORÉ (PAR DÉFAUT) -->
+                <div class="golden-tree-canvas-wrapper" id="goldenTreeCanvasWrapper">
+                    <div class="golden-tree-canvas" id="goldenTreeCanvas">
+                        <!-- Rendu dynamique de l'arbre doré avec SVG par app.js -->
+                    </div>
+                </div>
+
+                <!-- 2. VUE PIPELINE LINÉAIRE (Optionnelle) -->
+                <div class="linear-pipeline-wrapper" id="linearPipelineWrapper" style="display: none;">
+                    <div class="sp-pipeline-section" style="border: none; background: transparent;">
+                        <div class="sp-pipeline-track" id="journeyTrack">
+                            <!-- Rendu des nœuds linéaires -->
+                        </div>
+                    </div>
+
+                    <div class="sp-exec-section" style="margin-top: 1rem;">
+                        <div class="sp-exec-grid">
+                            <!-- Colonne 1 -->
+                            <div class="sp-exec-card">
+                                <div class="sp-exec-header">
+                                    <span class="sp-nature-pill" id="journeyNatureBadge">🛡️ VÉRIFICATION SÉCURITÉ</span>
+                                    <span class="sp-layer-tag" id="journeyStepLayer">Middlewares</span>
+                                </div>
+                                <div class="sp-exec-body">
+                                    <div class="sp-exec-field">
+                                        <label class="sp-exec-label">TRANSITION DE FICHIER À FICHIER :</label>
+                                        <div class="sp-file-transition">
+                                            <span class="sp-file-from" id="journeyFromFile">templates/...</span>
+                                            <span class="sp-file-arrow">➔</span>
+                                            <span class="sp-file-to" id="journeyToFile">middleware.py</span>
+                                        </div>
+                                    </div>
+                                    <div class="sp-exec-field">
+                                        <label class="sp-exec-label">CE QUI S'EST PASSÉ :</label>
+                                        <p class="sp-exec-text" id="journeyWhatHappened">Description...</p>
+                                    </div>
+                                    <div class="sp-exec-field">
+                                        <label class="sp-exec-label" style="color: #34d399;">CHANGEMENT DE VALEUR / MUTATION D'ÉTAT :</label>
+                                        <div class="sp-state-change-box" id="journeyStateChange">...</div>
+                                    </div>
+                                    <div class="sp-exec-field">
+                                        <label class="sp-exec-label">DONNÉES TRANSMISES :</label>
+                                        <pre class="sp-payload-box" id="journeyPayload">...</pre>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Colonne 2 -->
+                            <div class="sp-exec-card">
+                                <div class="sp-exec-header">
+                                    <span class="sp-exec-title">💻 Code Source & Requête SQL</span>
+                                    <span class="sp-latency-pill" id="journeyStepLatency">⚡ 42 ms</span>
+                                </div>
+                                <div class="sp-exec-body">
+                                    <div class="sp-exec-field">
+                                        <div class="sp-file-badge-bar">
+                                            <span>📄</span>
+                                            <span id="journeyCurrentFileLocation" style="font-weight: 700; color: #38bdf8;">fichier.py:L1</span>
+                                        </div>
+                                        <pre class="sp-code-block" id="journeyPythonCode"># Code...</pre>
+                                    </div>
+                                    <div class="sp-exec-field" id="journeySqlContainer">
+                                        <label class="sp-exec-label" style="color: #34d399;">REQUÊTE SQL GÉNÉRÉE :</label>
+                                        <pre class="sp-code-block sp-sql-block" id="journeySqlCode">SELECT ...</pre>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Colonne 3 -->
+                            <div class="sp-exec-card sp-exec-card-oral">
+                                <div class="sp-exec-header">
+                                    <span class="sp-exec-title" style="color: #fbbf24;">🎓 Argumentation Oral Soutenance</span>
+                                    <span class="sp-badge-exam">Jury 3iL</span>
+                                </div>
+                                <div class="sp-exec-body">
+                                    <div class="sp-oral-tip-box" id="journeyOralTip">
+                                        <strong>Question / Point clé :</strong>
+                                        <p>...</p>
+                                    </div>
+                                    <div class="sp-exec-field" style="margin-top: 0.75rem;">
+                                        <label class="sp-exec-label">POURQUOI CETTE ÉTAPE EST FONDAMENTALE :</label>
+                                        <p id="journeyWhyCritical" style="font-size: 0.8rem; color: #cbd5e1; line-height: 1.5; margin: 0;">...</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================================================================
+             POP-UP MODAL D'INSPECTION D'UNE ÉTAPE DE SIMULATION (AU CLIC D'UN NŒUD)
+             ================================================================== -->
+        <div class="golden-step-modal-backdrop" id="simStepModalBackdrop" style="display: none;"></div>
+        <div class="golden-step-modal" id="simStepModal" style="display: none;" role="dialog" aria-modal="true">
+            <div class="gsm-header">
+                <div class="gsm-title-wrap">
+                    <div style="display: flex; align-items: center; gap: 0.65rem;">
+                        <span class="gsm-nature-badge" id="gsmNatureBadge">⚙️ CONTRÔLE</span>
+                        <span class="gsm-step-pill" id="gsmStepPill">ÉTAPE 5 / 8</span>
+                    </div>
+                    <h3 id="gsmTitle">Nom de l'étape</h3>
+                    <div class="gsm-subtitle" id="gsmSubtitle">Sous-titre et contexte</div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.85rem;">
+                    <span class="sp-latency-pill" id="gsmLatency">⚡ 15 ms</span>
+                    <button class="sp-drawer-close" id="gsmCloseBtn" title="Fermer l'inspecteur d'étape (Échap)">×</button>
+                </div>
+            </div>
+
+            <!-- Transition de fichier -->
+            <div class="gsm-file-bar">
+                <div class="gsm-file-transit">
+                    <span class="gsm-file-node" id="gsmFromFile">templates/...</span>
+                    <span class="gsm-file-arrow">➔</span>
+                    <span class="gsm-file-node gsm-dest" id="gsmToFile">views.py</span>
+                </div>
+                <div class="gsm-code-loc" id="gsmCodeLoc">
+                    <span>📄</span> <code id="gsmFileLocText">applications/views.py:L268</code>
+                </div>
+            </div>
+
+            <div class="gsm-body">
+                <div class="gsm-grid-2">
+                    <!-- Colonne Gauche : Analyse Métier, Pourquoi & Comment -->
+                    <div class="gsm-card">
+                        <div class="gsm-card-title">⚙️ Analyse Métier & Sécurité Délibérée</div>
+
+                        <div class="gsm-why-box" id="gsmWhyBox">
+                            <div class="gsm-block-heading gsm-heading-why">🎯 POURQUOI CETTE ÉTAPE EXISTE (ENJEUX & RISQUES ÉVITÉS) :</div>
+                            <p class="gsm-text" id="gsmWhyText">Chargement des motifs d'ingénierie...</p>
+                        </div>
+
+                        <div class="gsm-how-box" id="gsmHowBox">
+                            <div class="gsm-block-heading gsm-heading-how">⚙️ COMMENT LE SYSTÈME L'EXÉCUTE (MÉCANISME INTERNE) :</div>
+                            <p class="gsm-text" id="gsmHowText">Chargement du mécanisme interne...</p>
+                        </div>
+
+                        <div class="gsm-mutation-block" id="gsmMutationBlock">
+                            <label>✓ MUTATION PERSISTANTE EN BASE SQL / MODÈLE :</label>
+                            <div class="gsm-mutation-val" id="gsmStateChange">...</div>
+                        </div>
+
+                        <div class="gsm-payload-block" id="gsmPayloadBlock">
+                            <label>📦 PARAMÈTRES & DONNÉES TRANSITANTES (PAYLOAD) :</label>
+                            <pre class="gsm-code-payload" id="gsmPayload">...</pre>
+                        </div>
+                    </div>
+
+                    <!-- Colonne Droite : Timing, Technologies, Code Backend Python & Requête SQL -->
+                    <div class="gsm-card">
+                        <div class="gsm-card-title">💻 Implémentation Backend & Exécution SQL</div>
+
+                        <div class="gsm-when-badge" id="gsmWhenBadge">
+                            <span>⏱️</span> <strong>TIMING DANS LE CYCLE DE VIE :</strong> <span id="gsmWhenText">...</span>
+                        </div>
+
+                        <div class="gsm-tech-container">
+                            <div class="gsm-tech-label">🛠️ TECHNOLOGIES MOBILISÉES DANS CETTE ÉTAPE :</div>
+                            <div class="gsm-tech-chips" id="gsmTechChips"></div>
+                        </div>
+
+                        <div class="gsm-code-section">
+                            <div class="gsm-code-label">🐍 Extrait Contrôleur Django (View / ORM) :</div>
+                            <pre class="gsm-code-block" id="gsmPythonCode"># Code...</pre>
+                        </div>
+
+                        <div class="gsm-sql-section" id="gsmSqlSection">
+                            <div class="gsm-code-label" style="color: #34d399;">⚡ Requête SQL PostgreSQL Générée :</div>
+                            <pre class="gsm-code-block gsm-sql-block" id="gsmSqlCode">SELECT ...</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ligne Inférieure : Argumentation Oral Soutenance en Grille 2 colonnes -->
+                <div class="gsm-oral-card">
+                    <div class="gsm-oral-title">
+                        <span>🎓 CONSEILS JURY 3iL INGÉNIEURS & ARGUMENTATION POUR L'ORAL</span>
+                    </div>
+                    <div class="gsm-oral-grid">
+                        <div class="gsm-oral-tip" id="gsmOralTip">
+                            <strong>🎓 Question / Point clé du jury 3iL :</strong>
+                            <p>...</p>
+                        </div>
+                        <div class="gsm-critical-reason" id="gsmCriticalReason">
+                            <strong>🛡️ Justification architecturale & Impact sécurité :</strong>
+                            <p>...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer avec navigation d'étape -->
+            <div class="gsm-footer">
+                <div class="gsm-footer-left">
+                    <button class="sp-ctrl-btn" id="gsmPrevBtn">◀ Étape Précédente</button>
+                    <button class="sp-ctrl-btn" id="gsmNextBtn">Étape Suivante ▶</button>
+                </div>
+                <button class="sp-ctrl-btn btn-play" id="gsmCloseFooterBtn" style="padding: 0.45rem 1.25rem;">Fermer l'Inspecteur (Échap)</button>
+            </div>
+        </div>
+
+        <!-- HUD TOOLTIP AU SURVOL D'UN NŒUD DE L'ARBRE -->
+        <div class="golden-hud-tooltip" id="simulationHUDTooltip" style="display: none;"></div>
+    </div>
+
+    <!-- ======================================================================
+         9. GLOBAL SEARCH MODAL (Ctrl + K)
+         ====================================================================== -->
+    <div class="hub-modal-overlay" id="searchModalOverlay">
+        <div class="hub-search-modal">
+            <div class="hub-modal-input-wrap">
+                <span style="font-size: 1.25rem;">🔍</span>
+                <input type="text" class="hub-modal-input" id="globalSearchInput" placeholder="Rechercher un bouton, une vue, un modèle, un fichier...">
+                <span class="hub-kbd">Échap</span>
+            </div>
+            <div class="hub-modal-results" id="searchResultsContainer">
+                <!-- Rendu dynamique des résultats -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Base de données d'inspection, Arbre d'Activité & Contrôleur Maquette -->
+    <script src="js/data.js"></script>
+    <script src="js/simulation-data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

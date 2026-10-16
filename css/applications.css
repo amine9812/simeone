@@ -1,0 +1,575 @@
+/* ==================================================
+   MODULE APPLICATIONS & CANDIDATURES
+   ================================================== */
+
+.statut-form {
+    margin: 16px 0;
+}
+
+.statut-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.statut-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.statut-controls select {
+    padding: 10px 14px;
+    border: 1.5px solid var(--color-input-border);
+    border-radius: 8px;
+    color: var(--color-text);
+    background: var(--color-input-bg);
+    max-width: 100%;
+    font-size: 14px;
+    transition: border-color 0.2s ease;
+}
+
+.statut-controls select:focus {
+    outline: none;
+    border-color: #0F766E;
+}
+
+.statut-controls button {
+    cursor: pointer;
+}
+
+.statut-controls :focus-visible {
+    outline: 2px solid #0F766E;
+    outline-offset: 2px;
+}
+
+/* Alignement vertical des boutons d'actions de la candidature */
+.actions-candidature-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+    justify-content: center;
+    flex-shrink: 0;
+    min-width: 220px;
+}
+
+.actions-candidature-card .bouton {
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* ==================================================
+   NOUVEAU : BOUTON DE CONFIRMATION DE STAGE
+   Format rectangulaire, moderne et teintes #0F766E
+   ================================================== */
+.btn-confirm-stage {
+    background: #0F766E !important;
+    border-color: #0F766E !important;
+    color: #ffffff !important;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    border-radius: 10px;
+    padding: 10px 16px;
+    box-shadow: 0 3px 10px rgba(15, 118, 110, 0.25);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-confirm-stage:hover {
+    background: #115E59 !important;
+    border-color: #115E59 !important;
+    color: #ffffff !important;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(15, 118, 110, 0.35);
+}
+
+/* Carte dont le stage est validé */
+.offre-stage-valide {
+    border-color: #0F766E !important;
+    box-shadow: 0 6px 24px rgba(15, 118, 110, 0.12) !important;
+    position: relative;
+}
+
+.banner-stage-confirme {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, rgba(15, 118, 110, 0.12) 0%, rgba(15, 118, 110, 0.05) 100%);
+    border: 1.5px solid #0F766E;
+    border-radius: 8px;
+    padding: 8px 14px;
+    color: #0F766E;
+    font-size: 0.875rem;
+    margin-bottom: 12px;
+}
+
+.banner-stage-confirme .icon-star {
+    font-size: 1.1rem;
+    color: #0F766E;
+}
+
+.box-stage-confirme {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: stretch;
+}
+
+.badge-stage-actif {
+    background: #0F766E;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.875rem;
+    padding: 9px 12px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(15, 118, 110, 0.2);
+}
+
+.btn-cancel-stage-subtle {
+    background: transparent;
+    border: none;
+    padding: 4px;
+    color: var(--color-text-muted);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    text-decoration: underline;
+    cursor: pointer;
+    text-align: center;
+    transition: color 0.2s ease;
+}
+
+.btn-cancel-stage-subtle:hover {
+    color: #ef4444;
+}
+
+/* ==================================================
+   MODAL DE CONFIRMATION (MOT DE PASSE / SÉCURITÉ)
+   ================================================== */
+.modal-stage-content {
+    background: #ffffff;
+    color: var(--color-text);
+    border: 1.5px solid var(--color-border);
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+}
+
+.modal-stage-content .modal-header {
+    border-bottom: 1px solid var(--color-border);
+    padding: 18px 24px;
+}
+
+.modal-stage-content .modal-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0;
+}
+
+.modal-stage-content .modal-body {
+    padding: 24px;
+}
+
+.modal-stage-content .modal-footer {
+    border-top: 1px solid var(--color-border);
+    padding: 16px 24px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.modal-stage-summary {
+    background: rgba(15, 118, 110, 0.08);
+    border-left: 3.5px solid #0F766E;
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+}
+
+.modal-stage-summary .modal-company {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: #0F766E;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin: 0 0 2px;
+}
+
+.modal-stage-summary .modal-offer-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0;
+}
+
+.modal-notice {
+    font-size: 0.9375rem;
+    color: var(--color-text);
+    line-height: 1.5;
+}
+
+.input-modal-password {
+    background: var(--color-surface);
+    border: 1.5px solid var(--color-input-border);
+    color: var(--color-text);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 0.9375rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input-modal-password:focus {
+    background: var(--color-surface);
+    color: var(--color-text);
+    border-color: #0F766E;
+    box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.18);
+    outline: none;
+}
+
+.btn-modal-confirm {
+    background: #0F766E !important;
+    border-color: #0F766E !important;
+    color: #ffffff !important;
+    font-weight: 600;
+    padding: 9px 18px;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+}
+
+.btn-modal-confirm:hover {
+    background: #115E59 !important;
+    border-color: #115E59 !important;
+}
+
+.btn-modal-danger {
+    background: #dc2626 !important;
+    border-color: #dc2626 !important;
+    color: #ffffff !important;
+    font-weight: 600;
+    padding: 9px 18px;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+}
+
+.btn-modal-danger:hover {
+    background: #b91c1c !important;
+    border-color: #b91c1c !important;
+}
+
+.btn-modal-dismiss {
+    padding: 9px 16px;
+    border-radius: 10px;
+    font-weight: 500;
+}
+
+/* ==================================================
+   MODE SOMBRE
+   ================================================== */
+[data-theme="dark"] .banner-stage-confirme {
+    background: rgba(20, 184, 166, 0.12);
+    border-color: #14b8a6;
+    color: #2dd4bf;
+}
+
+[data-theme="dark"] .banner-stage-confirme .icon-star {
+    color: #2dd4bf;
+}
+
+[data-theme="dark"] .modal-stage-summary {
+    background: rgba(20, 184, 166, 0.12);
+    border-left-color: #2dd4bf;
+}
+
+[data-theme="dark"] .modal-stage-summary .modal-company {
+    color: #2dd4bf;
+}
+
+[data-theme="dark"] .badge-stage-actif {
+    background: #0F766E;
+    color: #ffffff;
+}
+
+[data-theme="dark"] .modal-stage-content {
+    background: #111827 !important;
+    border-color: #374151;
+    color: #f9fafb;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.85);
+}
+
+[data-theme="dark"] .modal-stage-content .modal-header,
+[data-theme="dark"] .modal-stage-content .modal-footer {
+    border-color: #374151;
+}
+
+[data-theme="dark"] .modal-stage-content .modal-title {
+    color: #f9fafb;
+}
+
+[data-theme="dark"] .modal-stage-content .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+[data-theme="dark"] .modal-stage-content .modal-notice {
+    color: #e5e7eb;
+}
+
+[data-theme="dark"] .modal-stage-content .text-muted {
+    color: #9ca3af !important;
+}
+
+[data-theme="dark"] .modal-stage-content .form-label {
+    color: #f3f4f6;
+}
+
+[data-theme="dark"] .modal-stage-content .input-modal-password {
+    background: #1f2937;
+    border-color: #4b5563;
+    color: #f9fafb;
+}
+
+[data-theme="dark"] .modal-stage-content .input-modal-password:focus {
+    background: #1f2937;
+    border-color: #2dd4bf;
+    color: #f9fafb;
+    box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.25);
+}
+
+[data-theme="dark"] .modal-stage-content .btn-modal-dismiss {
+    background: #1f2937;
+    color: #e5e7eb;
+    border: 1px solid #374151;
+}
+
+[data-theme="dark"] .modal-stage-content .btn-modal-dismiss:hover {
+    background: #374151;
+    color: #ffffff;
+}
+
+@media (max-width: 768px) {
+    .actions-candidature-card {
+        width: 100%;
+        min-width: 0;
+        margin-top: 14px;
+    }
+}
+
+/* ==================================================
+   BARRE DE FILTRES ET GESTION DES FAVORIS
+   ================================================== */
+
+.candidatures-filter-bar {
+    padding: 16px 20px;
+    background: var(--color-surface);
+    border: 1.5px solid var(--color-border);
+    border-radius: 14px;
+    box-shadow: var(--color-card-shadow);
+    margin-bottom: 24px;
+}
+
+.filter-label {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.filter-tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.filter-tab-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--color-text);
+    border: 1.5px solid var(--color-border);
+    background: var(--color-surface);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.filter-tab-btn:hover {
+    border-color: #0F766E;
+    color: #0F766E;
+    background: var(--color-surface-hover);
+    transform: translateY(-1px);
+}
+
+.filter-tab-btn.active {
+    background: #0F766E;
+    color: #FFFFFF !important;
+    border-color: #0F766E;
+    box-shadow: 0 2px 8px rgba(15, 118, 110, 0.25);
+}
+
+.filter-tab-btn.tab-favorite.active {
+    background: #F59E0B !important;
+    color: #FFFFFF !important;
+    border-color: #F59E0B !important;
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+}
+
+.tab-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    border-radius: 999px;
+    background: var(--color-surface-hover);
+    color: var(--color-text);
+}
+
+.filter-tab-btn.active .tab-count {
+    background: rgba(255, 255, 255, 0.25);
+    color: #FFFFFF;
+}
+
+.count-favorite {
+    background: rgba(245, 158, 11, 0.15);
+    color: #D97706;
+}
+
+.count-accepted {
+    background: rgba(15, 118, 110, 0.15);
+    color: #0F766E;
+}
+
+.count-pending {
+    background: rgba(245, 158, 11, 0.15);
+    color: #D97706;
+}
+
+.count-refused {
+    background: rgba(239, 68, 68, 0.15);
+    color: #DC2626;
+}
+
+.time-filter-select {
+    border: 1.5px solid var(--color-border);
+    border-radius: 10px;
+    background: var(--color-surface);
+    color: var(--color-text);
+    font-weight: 600;
+    font-size: 0.8125rem;
+    padding: 6px 12px;
+    cursor: pointer;
+    min-width: 160px;
+    transition: all 0.2s ease;
+}
+
+.time-filter-select:focus {
+    outline: none;
+    border-color: #0F766E;
+    box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.15);
+}
+
+/* Bouton Star pour marquer / démarquer les favoris */
+.form-favorite-toggle {
+    display: inline-block;
+    margin: 0;
+}
+
+.btn-favorite-star {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    border: 1.5px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-text-muted);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    line-height: 1;
+}
+
+.btn-favorite-star .star-icon {
+    font-size: 1.05rem;
+    line-height: 1;
+    color: #94A3B8;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.btn-favorite-star:hover {
+    border-color: #F59E0B;
+    color: #D97706;
+    background: rgba(245, 158, 11, 0.08);
+    transform: translateY(-1px);
+}
+
+.btn-favorite-star:hover .star-icon {
+    color: #F59E0B;
+    transform: scale(1.15);
+}
+
+.btn-favorite-star.is-active {
+    border-color: #F59E0B;
+    background: rgba(245, 158, 11, 0.12);
+    color: #D97706;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.2);
+}
+
+.btn-favorite-star.is-active .star-icon {
+    color: #F59E0B;
+}
+
+[data-theme="dark"] .btn-favorite-star.is-active {
+    border-color: #FBBF24;
+    background: rgba(251, 191, 36, 0.15);
+    color: #FBBF24;
+}
+
+[data-theme="dark"] .btn-favorite-star.is-active .star-icon {
+    color: #FBBF24;
+}
+
+/* Badge favori sur la carte */
+.badge-cand-fav-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: rgba(245, 158, 11, 0.12);
+    color: #D97706;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+[data-theme="dark"] .badge-cand-fav-pill {
+    background: rgba(251, 191, 36, 0.15);
+    color: #FBBF24;
+    border-color: rgba(251, 191, 36, 0.35);
+}
+
+/* Carte favorite */
+.offre.offre-favorite {
+    border-color: rgba(245, 158, 11, 0.4);
+    box-shadow: 0 4px 18px rgba(245, 158, 11, 0.08);
+}
+
+[data-theme="dark"] .offre.offre-favorite {
+    border-color: rgba(251, 191, 36, 0.4);
+    box-shadow: 0 4px 18px rgba(251, 191, 36, 0.1);
+}
+

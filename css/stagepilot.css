@@ -1,0 +1,601 @@
+/* ==========================================================================
+   StagePilot Simulated Design System (100% Faithful to Django App)
+   Includes Glassmorphism, Dual Themes (Light/Dark), KPI Grids & Donut Chart
+   ========================================================================== */
+
+:root {
+    /* --- THÈME CLAIR (PAR DÉFAUT) --- */
+    --color-background: #f8fafc;
+    --color-background-secondary: #ffffff;
+    --color-surface: #ffffff;
+    --color-surface-hover: #f1f5f9;
+    --color-border: #cbd5e1;
+    --color-border-subtle: #e2e8f0;
+
+    --color-primary: #5b4eff;
+    --color-primary-hover: #4a3bf0;
+    --color-primary-subtle: rgba(91, 78, 255, 0.08);
+    --color-primary-border: rgba(91, 78, 255, 0.35);
+    --color-secondary: #0284c7;
+
+    --color-text: #0f172a;
+    --color-text-main: #0f172a;
+    --color-text-muted: #475569;
+
+    --color-card-bg: #ffffff;
+    --color-card-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.08);
+
+    --color-input-bg: #ffffff;
+    --color-input-border: #cbd5e1;
+    --color-input-text: #0f172a;
+
+    /* Boutons normaux : NOIR en mode clair */
+    --color-btn-normal-bg: #111827;
+    --color-btn-normal-border: #000000;
+    --color-btn-normal-text: #ffffff;
+    --color-btn-normal-hover-bg: #27272a;
+    --color-btn-normal-hover-border: #18181b;
+    --color-btn-normal-shadow: rgba(0, 0, 0, 0.22);
+
+    /* Boutons pour accepter / confirmer : Vert #0F766E */
+    --color-btn-accept-bg: #0F766E;
+    --color-btn-accept-border: #115E59;
+    --color-btn-accept-text: #ffffff;
+    --color-btn-accept-hover-bg: #115E59;
+    --color-btn-accept-hover-border: #134E4A;
+    --color-btn-accept-shadow: rgba(15, 118, 110, 0.32);
+
+    --navbar-bg: rgba(255, 255, 255, 0.94);
+    --navbar-border: #e2e8f0;
+    --navbar-link: #111827;
+    --navbar-link-hover-border: #000000;
+    --navbar-link-hover-bg: rgba(0, 0, 0, 0.05);
+    --navbar-link-hover-text: #000000;
+    --navbar-link-active-bg: #f3f4f6;
+    --navbar-link-active-border: #000000;
+    --navbar-link-active-text: #000000;
+    --navbar-link-indicator: #000000;
+
+    --border-radius: 16px;
+    --transition: 0.2s ease;
+}
+
+[data-theme="dark"] {
+    /* --- THÈME SOMBRE --- */
+    --color-background: #07152e;
+    --color-background-secondary: #0c2145;
+    --color-surface: rgba(255, 255, 255, 0.08);
+    --color-surface-hover: rgba(255, 255, 255, 0.12);
+    --color-border: rgba(255, 255, 255, 0.14);
+    --color-border-subtle: rgba(255, 255, 255, 0.08);
+
+    --color-primary: #665cff;
+    --color-primary-hover: #7b72ff;
+    --color-primary-subtle: rgba(102, 92, 255, 0.18);
+    --color-primary-border: rgba(102, 92, 255, 0.5);
+    --color-secondary: #42d9c8;
+
+    --color-text: #f4f7ff;
+    --color-text-main: #f4f7ff;
+    --color-text-muted: #aebbd4;
+
+    --color-card-bg: rgba(255, 255, 255, 0.08);
+    --color-card-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+
+    --color-input-bg: #101c3d;
+    --color-input-border: #3a476a;
+    --color-input-text: #ffffff;
+
+    --color-btn-normal-bg: #ffffff;
+    --color-btn-normal-border: #ffffff;
+    --color-btn-normal-text: #090d16;
+    --color-btn-normal-hover-bg: #e2e8f0;
+    --color-btn-normal-hover-border: #cbd5e1;
+    --color-btn-normal-shadow: rgba(255, 255, 255, 0.15);
+
+    --color-btn-accept-bg: #0F766E;
+    --color-btn-accept-border: #14b8a6;
+    --color-btn-accept-text: #ffffff;
+    --color-btn-accept-hover-bg: #115E59;
+    --color-btn-accept-hover-border: #0d9488;
+    --color-btn-accept-shadow: rgba(20, 184, 166, 0.3);
+
+    --navbar-bg: rgba(7, 21, 46, 0.92);
+    --navbar-border: rgba(255, 255, 255, 0.1);
+    --navbar-link: #dbe4f6;
+    --navbar-link-hover-border: #ffffff;
+    --navbar-link-hover-bg: rgba(255, 255, 255, 0.08);
+    --navbar-link-hover-text: #ffffff;
+    --navbar-link-active-bg: rgba(255, 255, 255, 0.12);
+    --navbar-link-active-border: #ffffff;
+    --navbar-link-active-text: #ffffff;
+    --navbar-link-indicator: #ffffff;
+}
+
+/* Base resets inside the simulated frame */
+.sp-sim-container {
+    background: var(--color-background);
+    color: var(--color-text);
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    line-height: 1.5;
+    border-radius: 12px;
+    overflow: hidden;
+    min-height: 800px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    border: 1px solid var(--color-border);
+    position: relative;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Navbar */
+.sp-navbar {
+    background: var(--navbar-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--navbar-border);
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+.sp-navbar-brand {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--color-text);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    letter-spacing: -0.02em;
+}
+.sp-navbar-brand span {
+    color: var(--color-primary);
+}
+.sp-nav-tabs {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.sp-nav-link {
+    color: var(--navbar-link);
+    text-decoration: none;
+    padding: 0.45rem 0.85rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    border: 1px solid transparent;
+    transition: all var(--transition);
+    cursor: pointer;
+}
+.sp-nav-link:hover {
+    background: var(--navbar-link-hover-bg);
+    color: var(--navbar-link-hover-text);
+    border-color: var(--navbar-link-hover-border);
+}
+.sp-nav-link.active {
+    background: var(--navbar-link-active-bg);
+    color: var(--navbar-link-active-text);
+    border-color: var(--navbar-link-active-border);
+    font-weight: 600;
+}
+.sp-notif-pill {
+    background: #ef4444;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.1rem 0.45rem;
+    border-radius: 9999px;
+}
+.sp-navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+/* Glass Card */
+.glass-card {
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    box-shadow: var(--color-card-shadow);
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+.glass-card:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Header & Typography */
+.sp-header {
+    margin-bottom: 2rem;
+}
+.sp-etiquette {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    margin-bottom: 0.35rem;
+}
+.sp-etiquette-ecole {
+    color: #0F766E;
+}
+.sp-title {
+    font-size: 1.85rem;
+    font-weight: 800;
+    color: var(--color-text-main);
+    letter-spacing: -0.03em;
+    margin: 0 0 0.5rem 0;
+}
+.sp-subtitle {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    margin: 0;
+}
+
+/* Buttons */
+.sp-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.25rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 10px;
+    border: 1px solid var(--color-btn-normal-border);
+    background: var(--color-btn-normal-bg);
+    color: var(--color-btn-normal-text);
+    cursor: pointer;
+    text-decoration: none;
+    transition: all var(--transition);
+    box-shadow: 0 2px 8px var(--color-btn-normal-shadow);
+}
+.sp-btn:hover {
+    background: var(--color-btn-normal-hover-bg);
+    border-color: var(--color-btn-normal-hover-border);
+    transform: translateY(-1px);
+}
+.sp-btn-accept {
+    background: var(--color-btn-accept-bg);
+    border-color: var(--color-btn-accept-border);
+    color: var(--color-btn-accept-text);
+    box-shadow: 0 2px 8px var(--color-btn-accept-shadow);
+}
+.sp-btn-accept:hover {
+    background: var(--color-btn-accept-hover-bg);
+    border-color: var(--color-btn-accept-hover-border);
+}
+.sp-btn-secondary {
+    background: transparent;
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    box-shadow: none;
+}
+.sp-btn-secondary:hover {
+    background: var(--color-surface-hover);
+    border-color: var(--color-border);
+}
+.sp-btn-sm {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+    border-radius: 8px;
+}
+
+/* KPI Grid */
+.sp-kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+.sp-kpi-card {
+    padding: 1.25rem;
+    border-radius: var(--border-radius);
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-border-subtle);
+    box-shadow: var(--color-card-shadow);
+}
+.sp-kpi-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+.sp-kpi-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    border-radius: 9999px;
+    text-transform: uppercase;
+}
+.badge-total { background: rgba(91, 78, 255, 0.12); color: #5b4eff; }
+.badge-accepted { background: rgba(16, 185, 129, 0.12); color: #10b981; }
+.badge-pending { background: rgba(245, 158, 11, 0.12); color: #f59e0b; }
+.badge-refused { background: rgba(239, 68, 68, 0.12); color: #ef4444; }
+.badge-confirmed { background: rgba(217, 119, 6, 0.15); color: #d97706; }
+
+.sp-kpi-num {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin: 0;
+    line-height: 1.1;
+    color: var(--color-text-main);
+}
+.sp-kpi-note {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    margin: 0.5rem 0 0 0;
+}
+
+/* Donut Chart SVG */
+.sp-donut-wrap {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+.sp-donut-svg-box {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    flex-shrink: 0;
+}
+.sp-donut-svg-box svg {
+    transform: rotate(-90deg);
+    width: 100%;
+    height: 100%;
+}
+.sp-donut-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.sp-donut-center strong {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--color-text-main);
+}
+.sp-donut-center span {
+    font-size: 0.7rem;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+}
+
+/* Legend */
+.sp-legend {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    font-size: 0.875rem;
+}
+.sp-legend li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.sp-legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+/* Filter Bar */
+.sp-filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--border-radius);
+    margin-bottom: 1.5rem;
+}
+.sp-filter-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+}
+.sp-filter-tab {
+    padding: 0.4rem 0.85rem;
+    font-size: 0.825rem;
+    font-weight: 600;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-text);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+    transition: all var(--transition);
+}
+.sp-filter-tab:hover {
+    background: var(--color-surface-hover);
+}
+.sp-filter-tab.active {
+    background: var(--color-btn-normal-bg);
+    color: var(--color-btn-normal-text);
+    border-color: var(--color-btn-normal-border);
+}
+.sp-tab-badge {
+    background: rgba(125, 125, 125, 0.2);
+    padding: 0.1rem 0.45rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+}
+
+/* Offer Card */
+.sp-offer-card {
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--border-radius);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1rem;
+    transition: transform var(--transition), box-shadow var(--transition);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+.sp-offer-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+.sp-offer-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+}
+.sp-offer-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-text-main);
+    margin: 0;
+}
+.sp-offer-company {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin: 0.2rem 0 0 0;
+}
+.sp-offer-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+.sp-tag {
+    font-size: 0.75rem;
+    background: var(--color-surface-hover);
+    color: var(--color-text-muted);
+    padding: 0.25rem 0.6rem;
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+/* Form Controls */
+.sp-form-group {
+    margin-bottom: 1.25rem;
+}
+.sp-label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-text-main);
+    margin-bottom: 0.4rem;
+}
+.sp-input, .sp-select, .sp-textarea {
+    width: 100%;
+    padding: 0.65rem 0.9rem;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    border: 1px solid var(--color-input-border);
+    background: var(--color-input-bg);
+    color: var(--color-input-text);
+    outline: none;
+    transition: border-color var(--transition);
+}
+.sp-input:focus, .sp-select:focus, .sp-textarea:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-primary-subtle);
+}
+
+/* Auth Cards */
+.sp-auth-wrapper {
+    max-width: 480px;
+    margin: 3rem auto;
+    padding: 0 1rem;
+}
+.sp-auth-box {
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    padding: 2.25rem;
+    box-shadow: var(--color-card-shadow);
+}
+.sp-space-selector {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+}
+.sp-space-tile {
+    border: 2px solid var(--color-border);
+    border-radius: 12px;
+    padding: 0.85rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all var(--transition);
+}
+.sp-space-tile.active {
+    border-color: var(--color-primary);
+    background: var(--color-primary-subtle);
+}
+.sp-space-tile span.icon {
+    display: block;
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
+}
+.sp-space-tile span.label {
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+/* Notification Item */
+.sp-notif-item {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.15rem;
+    border-radius: 12px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-subtle);
+    margin-bottom: 0.75rem;
+    transition: background 0.2s ease;
+}
+.sp-notif-item.is-unread {
+    border-left: 4px solid var(--color-primary);
+    background: var(--color-surface-hover);
+}
+.sp-notif-item-confirmation { border-left-color: #10b981; }
+.sp-notif-item-annulation { border-left-color: #ef4444; }
+
+/* Status Badges */
+.sp-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+}
+.badge-cand-confirmed { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+.badge-cand-accepted { background: #d1fae5; color: #065f46; border: 1px solid #a7f3d0; }
+.badge-cand-pending { background: #e0f2fe; color: #075985; border: 1px solid #bae6fd; }
+.badge-cand-refused { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+
+[data-theme="dark"] .badge-cand-confirmed { background: rgba(217, 119, 6, 0.25); color: #fbbf24; border-color: rgba(251, 191, 36, 0.4); }
+[data-theme="dark"] .badge-cand-accepted { background: rgba(16, 185, 129, 0.2); color: #34d399; border-color: rgba(52, 211, 153, 0.4); }
+[data-theme="dark"] .badge-cand-pending { background: rgba(14, 165, 233, 0.2); color: #38bdf8; border-color: rgba(56, 189, 248, 0.4); }
+[data-theme="dark"] .badge-cand-refused { background: rgba(239, 68, 68, 0.2); color: #f87171; border-color: rgba(248, 113, 113, 0.4); }

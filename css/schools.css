@@ -1,0 +1,766 @@
+/* ==========================================================================
+   StagePilot - Espace École & Gestion des Étudiants
+   Design moderne : Glassmorphism, teintes #0F766E, modes clair & sombre
+   ========================================================================== */
+
+.page-ecole {
+    color: var(--color-text);
+    min-height: calc(100vh - 160px);
+}
+
+.conteneur-ecole {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem 0 3.5rem;
+}
+
+.retour-ecole {
+    color: #0F766E;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    transition: all 0.2s ease;
+}
+
+.retour-ecole:hover {
+    color: #115E59;
+    transform: translateX(-3px);
+}
+
+.entete-ecole {
+    margin: 1.25rem 0 2rem;
+}
+
+.entete-ecole h1 {
+    font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: var(--color-text);
+    margin: 0.25rem 0 0.5rem;
+}
+
+.entete-ecole p {
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    margin: 0;
+}
+
+.etiquette-ecole {
+    color: #0F766E !important;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+}
+
+/* Bouton d'action école */
+.btn-school-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #111827;
+    color: #ffffff !important;
+    border-radius: 10px;
+    padding: 10px 18px;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.btn-school-action:hover {
+    background: #0F766E;
+    color: #ffffff !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(15, 118, 110, 0.25);
+}
+
+/* ==========================================================================
+   Avatar de l'étudiant
+   ========================================================================== */
+.student-avatar-badge {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #0F766E 0%, #115E59 100%);
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 2px 6px rgba(15, 118, 110, 0.25);
+}
+
+/* Ligne étudiant dans le tableau de bord */
+.school-student-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 14px 18px;
+}
+
+/* ==========================================================================
+   Barre de Filtres & Tri (Page Liste des Étudiants)
+   ========================================================================== */
+.school-filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.filter-tabs-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.filter-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+}
+
+.filter-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.filter-tab-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 6px 14px;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    background: var(--color-surface);
+    color: var(--color-text);
+    border: 1.5px solid var(--color-border);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.filter-tab-btn:hover {
+    border-color: #0F766E;
+    color: #0F766E;
+    transform: translateY(-1px);
+}
+
+.filter-tab-btn.active {
+    background: #111827;
+    color: #ffffff !important;
+    border-color: #111827;
+    box-shadow: 0 2px 8px rgba(17, 24, 39, 0.15);
+}
+
+.filter-tab-btn.active .tab-count {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+}
+
+.tab-count {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    background: rgba(0, 0, 0, 0.06);
+    color: var(--color-text);
+}
+
+.count-confirmed {
+    background: rgba(15, 118, 110, 0.15);
+    color: #0F766E;
+}
+
+.count-accepted {
+    background: rgba(15, 118, 110, 0.12);
+    color: #0F766E;
+}
+
+.count-pending {
+    background: rgba(217, 119, 6, 0.12);
+    color: #b45309;
+}
+
+.count-refused {
+    background: rgba(239, 68, 68, 0.12);
+    color: #dc2626;
+}
+
+/* Tri */
+.sort-select-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-sort-link {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 8px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--color-text-muted);
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.btn-sort-link:hover {
+    color: var(--color-text);
+    background: var(--color-surface-hover);
+}
+
+.btn-sort-link.active {
+    background: var(--color-surface);
+    color: #0F766E;
+    border-color: #0F766E;
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   Grille des Cartes Étudiants
+   ========================================================================== */
+.liste-ecole-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 360px), 1fr));
+    gap: 1.25rem;
+}
+
+.school-student-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.25rem;
+    border-radius: 14px;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.school-student-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.badge-status-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    padding: 5px 12px;
+    border-radius: 9999px;
+    font-size: 0.78125rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.student-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.student-card-profile {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.student-card-profile h2 {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    margin: 0 0 2px;
+    color: var(--color-text);
+}
+
+.student-meta-sub {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    margin: 0;
+}
+
+.student-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    margin-bottom: 1.25rem;
+    flex-grow: 1;
+}
+
+.student-info-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    line-height: 1.45;
+}
+
+.info-label {
+    font-weight: 600;
+    color: var(--color-text-muted);
+    white-space: nowrap;
+}
+
+.info-value {
+    color: var(--color-text);
+    word-break: break-word;
+}
+
+.info-value a {
+    color: #0F766E;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.info-value a:hover {
+    text-decoration: underline;
+}
+
+.cand-mini-breakdown {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+}
+
+.skills-text {
+    font-size: 0.8125rem;
+    color: var(--color-text);
+}
+
+.student-card-footer {
+    border-top: 1px solid var(--color-border);
+    padding-top: 0.875rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.student-card-confirmed {
+    border-color: rgba(15, 118, 110, 0.5);
+    box-shadow: 0 4px 14px rgba(15, 118, 110, 0.1);
+    position: relative;
+}
+
+.student-confirmed-stage-box {
+    background: rgba(15, 118, 110, 0.08);
+    border-left: 3.5px solid #0F766E;
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+}
+
+.company-confirmed-name {
+    color: #0F766E;
+    font-weight: 700;
+}
+
+.date-confirm-sub {
+    margin-top: 2px;
+    font-size: 0.75rem;
+}
+
+.badge-cand-confirmed {
+    background: #0F766E !important;
+    color: #ffffff !important;
+    border: 1.5px solid #0F766E;
+    box-shadow: 0 2px 6px rgba(15, 118, 110, 0.25);
+}
+
+.btn-contact-student {
+    width: 100%;
+    text-align: center;
+    font-size: 0.875rem;
+    padding: 8px 14px;
+}
+
+/* ==========================================================================
+   Adaptations Mode Sombre
+   ========================================================================== */
+[data-theme="dark"] .etiquette-ecole {
+    color: #2dd4bf !important;
+}
+
+[data-theme="dark"] .retour-ecole {
+    color: #2dd4bf;
+}
+
+[data-theme="dark"] .retour-ecole:hover {
+    color: #5eead4;
+}
+
+[data-theme="dark"] .btn-school-action {
+    background: #0F766E;
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .btn-school-action:hover {
+    background: #115E59;
+}
+
+[data-theme="dark"] .filter-tab-btn.active {
+    background: #0F766E;
+    border-color: #0F766E;
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .count-confirmed {
+    background: rgba(45, 212, 191, 0.2);
+    color: #2dd4bf;
+}
+
+[data-theme="dark"] .count-pending {
+    background: rgba(245, 158, 11, 0.15);
+    color: #fcd34d;
+}
+
+[data-theme="dark"] .count-accepted {
+    background: rgba(45, 212, 191, 0.15);
+    color: #2dd4bf;
+}
+
+[data-theme="dark"] .count-refused {
+    background: rgba(248, 113, 113, 0.15);
+    color: #f87171;
+}
+
+[data-theme="dark"] .badge-cand-confirmed {
+    background: #14b8a6 !important;
+    color: #042f2e !important;
+    border-color: #2dd4bf;
+    box-shadow: 0 2px 8px rgba(20, 184, 166, 0.35);
+}
+
+[data-theme="dark"] .student-card-confirmed {
+    border-color: rgba(45, 212, 191, 0.4);
+    box-shadow: 0 4px 18px rgba(20, 184, 166, 0.15);
+}
+
+[data-theme="dark"] .student-confirmed-stage-box {
+    background: rgba(20, 184, 166, 0.12);
+    border-left-color: #2dd4bf;
+}
+
+[data-theme="dark"] .company-confirmed-name {
+    color: #2dd4bf;
+}
+
+[data-theme="dark"] .info-value a {
+    color: #2dd4bf;
+}
+
+[data-theme="dark"] .btn-sort-link.active {
+    color: #2dd4bf;
+    border-color: #2dd4bf;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .school-filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .school-student-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .latest-card-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-top: 0.5rem;
+    }
+
+    .notif-card {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 16px;
+    }
+
+    .notif-actions {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-top: 10px;
+    }
+}
+
+/* ==================================================
+   SECTION NOTIFICATIONS ÉCOLE (PAGE DÉDIÉE)
+   ================================================== */
+
+.notifications-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 20px;
+}
+
+/* Carte de notification avec bordures très soignées */
+.notif-card {
+    position: relative;
+    padding: 20px 24px;
+    background: var(--color-surface);
+    border: 1.5px solid var(--color-border);
+    border-radius: 14px;
+    box-shadow: var(--color-card-shadow);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    overflow: hidden;
+}
+
+.notif-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Bordure gauche spécifique très opaque et nette pour confirmation (Vert #0F766E) */
+.notif-card-confirmation {
+    border-left: 5px solid #0F766E !important;
+}
+
+/* Bordure gauche spécifique très opaque et nette pour annulation (Rouge #EF4444) */
+.notif-card-annulation {
+    border-left: 5px solid #EF4444 !important;
+}
+
+[data-theme="dark"] .notif-card-confirmation {
+    border-left: 5px solid #14B8A6 !important;
+}
+
+[data-theme="dark"] .notif-card-annulation {
+    border-left: 5px solid #F87171 !important;
+}
+
+/* Légère nuance de fond pour les non lues */
+.notif-card-unread {
+    background: rgba(15, 118, 110, 0.025);
+}
+
+[data-theme="dark"] .notif-card-unread {
+    background: rgba(15, 118, 110, 0.08);
+}
+
+/* Icône de statut à gauche */
+.notif-icon-box {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.notif-icon-confirmed {
+    background: rgba(15, 118, 110, 0.12);
+    color: #0F766E;
+    border: 1.5px solid rgba(15, 118, 110, 0.25);
+}
+
+[data-theme="dark"] .notif-icon-confirmed {
+    background: rgba(20, 184, 166, 0.15);
+    color: #2DD4BF;
+    border-color: rgba(20, 184, 166, 0.35);
+}
+
+.notif-icon-cancelled {
+    background: rgba(239, 68, 68, 0.12);
+    color: #DC2626;
+    border: 1.5px solid rgba(239, 68, 68, 0.25);
+}
+
+[data-theme="dark"] .notif-icon-cancelled {
+    background: rgba(239, 68, 68, 0.2);
+    color: #F87171;
+    border-color: rgba(239, 68, 68, 0.4);
+}
+
+/* Corps de notification */
+.notif-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.notif-header-line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.notif-badges-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.notif-type-pill {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 3px 10px;
+    border-radius: 999px;
+}
+
+.notif-type-pill-confirmed {
+    background: rgba(15, 118, 110, 0.12);
+    color: #0F766E;
+}
+
+[data-theme="dark"] .notif-type-pill-confirmed {
+    background: rgba(20, 184, 166, 0.15);
+    color: #2DD4BF;
+}
+
+.notif-type-pill-cancelled {
+    background: rgba(239, 68, 68, 0.12);
+    color: #DC2626;
+}
+
+[data-theme="dark"] .notif-type-pill-cancelled {
+    background: rgba(239, 68, 68, 0.2);
+    color: #F87171;
+}
+
+.notif-unread-pill {
+    background: #0F766E;
+    color: #FFFFFF;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 999px;
+    text-transform: uppercase;
+}
+
+.notif-date {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+}
+
+.notif-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--color-heading);
+    margin: 0 0 6px 0;
+}
+
+.notif-message {
+    font-size: 0.9375rem;
+    color: var(--color-text);
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+.notif-meta-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}
+
+.notif-chip {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    background: var(--color-surface-hover);
+    padding: 5px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.notif-chip strong {
+    color: var(--color-text);
+}
+
+/* Actions de notification */
+.notif-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.btn-notif-action {
+    padding: 6px 14px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    border-radius: 8px;
+    border: 1.5px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-text);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.btn-notif-action:hover {
+    border-color: #0F766E;
+    color: #0F766E;
+    background: var(--color-surface-hover);
+}
+
+.btn-notif-action.is-read {
+    color: var(--color-text-muted);
+}
+
+.btn-notif-view {
+    padding: 6px 14px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    border-radius: 8px;
+    background: #0F766E;
+    color: #FFFFFF !important;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.btn-notif-view:hover {
+    background: #0d655e;
+    transform: translateY(-1px);
+}
+
+.btn-mark-all-pill {
+    padding: 7px 16px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    border-radius: 999px;
+    background: var(--color-surface);
+    border: 1.5px solid #0F766E;
+    color: #0F766E !important;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.btn-mark-all-pill:hover {
+    background: #0F766E;
+    color: #FFFFFF !important;
+}

@@ -1,0 +1,967 @@
+/* =========================================================
+   1. VARIABLES GLOBALES & THÈMES (CLAIR PAR DÉFAUT & SOMBRE)
+   ========================================================= */
+
+:root {
+    /* --- THÈME CLAIR (PAR DÉFAUT) --- */
+    --color-background: #f8fafc;
+    --color-background-secondary: #ffffff;
+    --color-surface: #ffffff;
+    --color-surface-hover: #f1f5f9;
+    --color-border: #cbd5e1;
+    --color-border-subtle: #e2e8f0;
+
+    --color-primary: #5b4eff;
+    --color-primary-hover: #4a3bf0;
+    --color-primary-subtle: rgba(91, 78, 255, 0.08);
+    --color-primary-border: rgba(91, 78, 255, 0.35);
+    --color-secondary: #0284c7;
+
+    --color-text: #0f172a;
+    --color-text-main: #0f172a;
+    --color-text-muted: #475569;
+
+    --color-card-bg: #ffffff;
+    --color-card-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.08);
+
+    --color-input-bg: #ffffff;
+    --color-input-border: #cbd5e1;
+    --color-input-text: #0f172a;
+
+    /* --- BOUTONS APPLICATIFS (HORS NAVBAR) --- */
+    /* Boutons normaux : NOIR en mode clair */
+    --color-btn-normal-bg: #111827;
+    --color-btn-normal-border: #000000;
+    --color-btn-normal-text: #ffffff;
+    --color-btn-normal-hover-bg: #27272a;
+    --color-btn-normal-hover-border: #18181b;
+    --color-btn-normal-shadow: rgba(0, 0, 0, 0.22);
+
+    /* Boutons pour accepter / confirmer : Vert #0F766E */
+    --color-btn-accept-bg: #0F766E;
+    --color-btn-accept-border: #115E59;
+    --color-btn-accept-text: #ffffff;
+    --color-btn-accept-hover-bg: #115E59;
+    --color-btn-accept-hover-border: #134E4A;
+    --color-btn-accept-shadow: rgba(15, 118, 110, 0.32);
+
+    --navbar-bg: rgba(255, 255, 255, 0.94);
+    --navbar-border: #e2e8f0;
+    --navbar-link: #111827;
+    --navbar-link-hover-border: #000000;
+    --navbar-link-hover-bg: rgba(0, 0, 0, 0.05);
+    --navbar-link-hover-text: #000000;
+    --navbar-link-active-bg: #f3f4f6;
+    --navbar-link-active-border: #000000;
+    --navbar-link-active-text: #000000;
+    --navbar-link-indicator: #000000;
+
+    --border-radius: 16px;
+    --transition: 0.2s ease;
+}
+
+[data-theme="dark"] {
+    /* --- THÈME SOMBRE --- */
+    --color-background: #07152e;
+    --color-background-secondary: #0c2145;
+    --color-surface: rgba(255, 255, 255, 0.08);
+    --color-surface-hover: rgba(255, 255, 255, 0.12);
+    --color-border: rgba(255, 255, 255, 0.14);
+    --color-border-subtle: rgba(255, 255, 255, 0.08);
+
+    --color-primary: #665cff;
+    --color-primary-hover: #7b72ff;
+    --color-primary-subtle: rgba(102, 92, 255, 0.18);
+    --color-primary-border: rgba(102, 92, 255, 0.5);
+    --color-secondary: #42d9c8;
+
+    --color-text: #f4f7ff;
+    --color-text-main: #f4f7ff;
+    --color-text-muted: #aebbd4;
+
+    --color-card-bg: rgba(255, 255, 255, 0.08);
+    --color-card-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+
+    --color-input-bg: #101c3d;
+    --color-input-border: #3a476a;
+    --color-input-text: #ffffff;
+
+    /* --- BOUTONS APPLICATIFS EN MODE SOMBRE --- */
+    --color-btn-normal-bg: #ffffff;
+    --color-btn-normal-border: #ffffff;
+    --color-btn-normal-text: #090d16;
+    --color-btn-normal-hover-bg: #e2e8f0;
+    --color-btn-normal-hover-border: #cbd5e1;
+    --color-btn-normal-shadow: rgba(255, 255, 255, 0.15);
+
+    --color-btn-accept-bg: #0F766E;
+    --color-btn-accept-border: #14b8a6;
+    --color-btn-accept-text: #ffffff;
+    --color-btn-accept-hover-bg: #115E59;
+    --color-btn-accept-hover-border: #0d5f58;
+    --color-btn-accept-shadow: rgba(15, 118, 110, 0.4);
+
+    --navbar-bg: rgba(7, 21, 46, 0.90);
+    --navbar-border: rgba(255, 255, 255, 0.14);
+    --navbar-link: #aebbd4;
+    --navbar-link-hover-border: rgba(102, 92, 255, 0.75);
+    --navbar-link-hover-bg: rgba(255, 255, 255, 0.08);
+    --navbar-link-hover-text: #ffffff;
+    --navbar-link-active-bg: rgba(102, 92, 255, 0.25);
+    --navbar-link-active-border: rgba(102, 92, 255, 0.65);
+    --navbar-link-active-text: #ffffff;
+    --navbar-link-indicator: linear-gradient(90deg, var(--color-secondary), var(--color-primary-hover));
+}
+
+
+/* =========================================================
+   2. DIMENSIONS GÉNÉRALES DE LA PAGE
+   ========================================================= */
+
+html,
+body {
+    min-height: 100%;
+}
+
+
+/* =========================================================
+   3. STYLE GÉNÉRAL DU BODY
+   ========================================================= */
+
+body {
+    margin: 0;
+    color: var(--color-text);
+    background-color: var(--color-background);
+    background-image:
+        radial-gradient(circle at 80% 10%, rgba(91, 78, 255, 0.08), transparent 45%),
+        radial-gradient(circle at 10% 80%, rgba(2, 132, 199, 0.06), transparent 45%);
+    background-attachment: fixed;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+}
+
+[data-theme="dark"] body {
+    background-color: var(--color-background);
+    background-image:
+        radial-gradient(circle at 80% 10%, rgba(75, 83, 255, 0.25), transparent 35%),
+        radial-gradient(circle at 10% 80%, rgba(31, 180, 190, 0.18), transparent 35%);
+}
+
+
+/* =========================================================
+   4. CONTENU PRINCIPAL
+   ========================================================= */
+
+.main-content {
+    min-height: calc(100vh - 150px);
+    padding-top: 36px;
+    padding-bottom: 60px;
+}
+
+
+/* =========================================================
+   5. BARRE DE NAVIGATION GLASSMORPHISM
+   ========================================================= */
+
+.navbar-glass {
+    background: var(--navbar-bg);
+    border-bottom: 1px solid var(--navbar-border);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.navbar-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar-brand {
+    color: var(--color-text);
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: -0.02em;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform var(--transition), opacity var(--transition), color var(--transition);
+}
+
+.navbar-brand:hover {
+    color: var(--color-primary);
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   6. ONGLETS DE LA BARRE DE NAVIGATION (CENTRÉS)
+   Centrés horizontalement & distincts en mode clair et sombre
+   ========================================================= */
+
+.navbar-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.navbar-nav .nav-link {
+    position: relative;
+    color: var(--navbar-link) !important;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    padding: 8px 16px !important;
+    border-radius: 12px;
+    border: 1.5px solid transparent;
+    background: transparent;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Effet de survol avec BORDURE VISIBLE pour repérer facilement l'emplacement */
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus-visible {
+    color: var(--navbar-link-hover-text) !important;
+    background: var(--navbar-link-hover-bg) !important;
+    border: 1.5px solid var(--navbar-link-hover-border) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    transform: translateY(-1px);
+}
+
+/* Onglet actif / position courante dans l'application : très distinct & bordé */
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link[aria-current="page"] {
+    color: var(--navbar-link-active-text) !important;
+    font-weight: 700;
+    background: var(--navbar-link-active-bg) !important;
+    border: 1.5px solid var(--navbar-link-active-border) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Barre indicatrice lumineuse sous l'onglet actif */
+.navbar-nav .nav-link.active::after,
+.navbar-nav .nav-link[aria-current="page"]::after {
+    content: "";
+    position: absolute;
+    bottom: 3px;
+    left: 14px;
+    right: 14px;
+    height: 2.5px;
+    background: var(--navbar-link-indicator);
+    border-radius: 99px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.25);
+    animation: tabIndicatorIn 0.25s ease-out;
+}
+
+/* Survol de l'onglet actif */
+.navbar-nav .nav-link.active:hover,
+.navbar-nav .nav-link[aria-current="page"]:hover {
+    background: var(--navbar-link-active-bg) !important;
+    border-color: var(--navbar-link-hover-border) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="dark"] .navbar-nav .nav-link:hover,
+[data-theme="dark"] .navbar-nav .nav-link:focus-visible {
+    box-shadow: 0 2px 10px rgba(66, 217, 200, 0.25);
+}
+
+[data-theme="dark"] .navbar-nav .nav-link.active,
+[data-theme="dark"] .navbar-nav .nav-link[aria-current="page"] {
+    box-shadow: 0 2px 12px rgba(66, 217, 200, 0.25);
+}
+
+[data-theme="dark"] .navbar-nav .nav-link.active::after,
+[data-theme="dark"] .navbar-nav .nav-link[aria-current="page"]::after {
+    box-shadow: 0 0 10px rgba(66, 217, 200, 0.6);
+}
+
+@keyframes tabIndicatorIn {
+    from {
+        opacity: 0;
+        transform: scaleX(0.6);
+    }
+    to {
+        opacity: 1;
+        transform: scaleX(1);
+    }
+}
+
+
+/* =========================================================
+   7. ACTIONS NAVBAR & BOUTON THÈME
+   ========================================================= */
+
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Bouton pour basculer le thème (Clair / Sombre) */
+.btn-theme-toggle {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-surface);
+    border: 1.5px solid var(--color-border);
+    color: var(--color-text);
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0;
+    line-height: 1;
+}
+
+.btn-theme-toggle:hover {
+    background: var(--color-surface-hover);
+    border-color: #0F766E;
+    color: #0F766E;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(15, 118, 110, 0.18);
+}
+
+.btn-theme-toggle .theme-icon {
+    display: block;
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-theme-toggle:hover .theme-icon {
+    transform: rotate(18deg) scale(1.08);
+}
+
+/* Icône soleil moderne et éclatante (visible en mode sombre) */
+.theme-icon-sun {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23fbbf24' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Cpath d='M12 2v2'/%3E%3Cpath d='M12 20v2'/%3E%3Cpath d='m4.93 4.93 1.41 1.41'/%3E%3Cpath d='m17.66 17.66 1.41 1.41'/%3E%3Cpath d='M2 12h2'/%3E%3Cpath d='M20 12h2'/%3E%3Cpath d='m6.34 17.66-1.41 1.41'/%3E%3Cpath d='m19.07 4.93-1.41 1.41'/%3E%3C/svg%3E");
+}
+
+.btn-theme-toggle:hover .theme-icon-sun {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23fef08a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Cpath d='M12 2v2'/%3E%3Cpath d='M12 20v2'/%3E%3Cpath d='m4.93 4.93 1.41 1.41'/%3E%3Cpath d='m17.66 17.66 1.41 1.41'/%3E%3Cpath d='M2 12h2'/%3E%3Cpath d='M20 12h2'/%3E%3Cpath d='m6.34 17.66-1.41 1.41'/%3E%3Cpath d='m19.07 4.93-1.41 1.41'/%3E%3C/svg%3E");
+}
+
+/* Icône lune fine et élégante (visible en mode clair) */
+.theme-icon-moon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%231f2937' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z'/%3E%3C/svg%3E");
+}
+
+.btn-theme-toggle:hover .theme-icon-moon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%230F766E' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z'/%3E%3C/svg%3E");
+}
+
+/* En mode clair (défaut), affiche la lune pour passer au mode sombre */
+.theme-icon-sun { display: none !important; }
+.theme-icon-moon { display: block !important; }
+
+/* En mode sombre, affiche le soleil pour passer au mode clair */
+[data-theme="dark"] .theme-icon-sun { display: block !important; }
+[data-theme="dark"] .theme-icon-moon { display: none !important; }
+
+/* ==================================================
+   CLOCHE DE NOTIFICATIONS (ESPACE ÉCOLE)
+   ================================================== */
+
+.notif-bell-dropdown {
+    position: relative;
+    display: inline-flex;
+}
+
+.btn-notif-bell {
+    position: relative;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-surface);
+    border: 1.5px solid var(--color-border);
+    color: var(--color-text);
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0;
+    line-height: 1;
+}
+
+.btn-notif-bell:hover,
+.btn-notif-bell[aria-expanded="true"] {
+    background: var(--color-surface-hover);
+    border-color: #0F766E;
+    color: #0F766E;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(15, 118, 110, 0.18);
+}
+
+.btn-notif-bell .notif-bell-icon {
+    width: 19px;
+    height: 19px;
+    stroke: currentColor;
+    transition: transform 0.2s ease;
+}
+
+.btn-notif-bell:hover .notif-bell-icon {
+    transform: rotate(12deg);
+}
+
+/* Badge numérique sur la cloche */
+.notif-badge-count {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background: #EF4444;
+    color: #FFFFFF;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    min-width: 18px;
+    height: 18px;
+    line-height: 18px;
+    text-align: center;
+    border-radius: 999px;
+    padding: 0 4px;
+    border: 2px solid var(--color-surface);
+    box-shadow: 0 2px 6px rgba(239, 68, 68, 0.4);
+}
+
+/* Badge dans l'onglet central de navigation */
+.tab-badge-notif {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 6px;
+    background: #EF4444;
+    color: #FFFFFF;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    min-width: 18px;
+    height: 18px;
+    line-height: 18px;
+    border-radius: 999px;
+    padding: 0 5px;
+}
+
+/* Menu déroulant de la cloche */
+.notif-dropdown-menu {
+    width: 350px;
+    max-width: 90vw;
+    padding: 0;
+    border-radius: 14px;
+    background: var(--color-surface);
+    border: 1.5px solid var(--color-border);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.14);
+    overflow: hidden;
+    margin-top: 8px !important;
+}
+
+.notif-dropdown-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-surface-hover);
+}
+
+.notif-dropdown-header h4 {
+    margin: 0;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--color-heading);
+}
+
+.notif-mark-all-link {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #0F766E;
+    text-decoration: none;
+}
+
+.notif-mark-all-link:hover {
+    text-decoration: underline;
+    color: #0F766E;
+}
+
+.notif-dropdown-list {
+    max-height: 320px;
+    overflow-y: auto;
+}
+
+.notif-dropdown-item {
+    display: block;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--color-border);
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.15s ease;
+    background: var(--color-surface);
+}
+
+.notif-dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.notif-dropdown-item:hover {
+    background: var(--color-surface-hover);
+    color: inherit;
+}
+
+.notif-dropdown-item-confirmation {
+    border-left: 4px solid #0F766E !important;
+}
+
+.notif-dropdown-item-annulation {
+    border-left: 4px solid #EF4444 !important;
+}
+
+.notif-dropdown-item.is-unread {
+    background: rgba(15, 118, 110, 0.03);
+}
+
+[data-theme="dark"] .notif-dropdown-item.is-unread {
+    background: rgba(15, 118, 110, 0.08);
+}
+
+.notif-dropdown-item-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    margin-bottom: 4px;
+}
+
+.notif-dropdown-tag {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.notif-dropdown-tag-confirmation {
+    color: #0F766E;
+}
+
+.notif-dropdown-tag-annulation {
+    color: #EF4444;
+}
+
+.notif-dropdown-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #0F766E;
+    display: inline-block;
+}
+
+.notif-dropdown-item-text {
+    font-size: 0.8125rem;
+    color: var(--color-text);
+    line-height: 1.4;
+    margin-bottom: 4px;
+}
+
+.notif-dropdown-item-time {
+    font-size: 0.6875rem;
+    color: var(--color-text-muted);
+}
+
+.notif-dropdown-empty {
+    padding: 28px 16px;
+    text-align: center;
+    color: var(--color-text-muted);
+}
+
+.notif-dropdown-empty .empty-bell-icon {
+    font-size: 1.75rem;
+    display: block;
+    margin-bottom: 6px;
+    opacity: 0.6;
+}
+
+.notif-dropdown-empty p {
+    margin: 0;
+    font-size: 0.875rem;
+}
+
+.notif-dropdown-footer {
+    display: block;
+    padding: 11px 16px;
+    text-align: center;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #0F766E;
+    text-decoration: none;
+    background: var(--color-surface-hover);
+    border-top: 1px solid var(--color-border);
+    transition: all 0.15s ease;
+}
+
+.notif-dropdown-footer:hover {
+    background: var(--color-border);
+    color: #0F766E;
+}
+
+/* Bouton secondaire pour déconnexion */
+.btn-outline-auth {
+    padding: 8px 16px;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    border-radius: 10px;
+    border: 1.5px solid var(--color-border);
+    color: var(--color-text) !important;
+    background: var(--color-surface);
+    text-decoration: none;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-outline-auth:hover {
+    border-color: #ef4444;
+    color: #ef4444 !important;
+    background: rgba(239, 68, 68, 0.08);
+    transform: translateY(-1px);
+}
+
+/* Bouton principal pour inscription dans la navbar (Vert #0F766E) */
+.btn-nav-action {
+    padding: 8px 18px;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    border-radius: 10px;
+    text-decoration: none;
+    background: #0F766E !important;
+    border: 1.5px solid #0F766E !important;
+    color: #FFFFFF !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 8px rgba(15, 118, 110, 0.25);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-nav-action:hover {
+    background: #0D655E !important;
+    border-color: #0D655E !important;
+    color: #FFFFFF !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(15, 118, 110, 0.35);
+}
+
+.btn-nav-action:active {
+    transform: translateY(0);
+}
+
+[data-theme="dark"] .btn-nav-action {
+    background: #0F766E !important;
+    border-color: #0F766E !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 2px 8px rgba(15, 118, 110, 0.4);
+}
+
+[data-theme="dark"] .btn-nav-action:hover {
+    background: #14B8A6 !important;
+    border-color: #14B8A6 !important;
+    color: #042F2E !important;
+    box-shadow: 0 4px 14px rgba(20, 184, 166, 0.45);
+}
+
+/* Liens textuels du module accounts (vert layout #0F766E, sans effet bouton ni bordure) */
+a.lien-accounts,
+.lien-accounts {
+    color: #0F766E !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+    transition: color 0.15s ease;
+}
+
+a.lien-accounts:hover,
+.lien-accounts:hover {
+    text-decoration: underline !important;
+    color: #0D655E !important;
+}
+
+[data-theme="dark"] a.lien-accounts,
+[data-theme="dark"] .lien-accounts {
+    color: #2DD4BF !important;
+}
+
+[data-theme="dark"] a.lien-accounts:hover,
+[data-theme="dark"] .lien-accounts:hover {
+    color: #5EEAD4 !important;
+}
+
+/* Centrage parfait des onglets sur grand écran */
+@media (min-width: 992px) {
+    .navbar-collapse {
+        display: flex !important;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .navbar-center-tabs {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 0 !important;
+    }
+
+    .navbar-actions {
+        margin-left: auto;
+    }
+}
+
+/* Adaptation responsive de la navbar */
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        padding-top: 1rem;
+        padding-bottom: 0.75rem;
+    }
+
+    .navbar-center-tabs {
+        gap: 8px;
+        align-items: stretch !important;
+        width: 100%;
+        margin-bottom: 12px !important;
+    }
+
+    .navbar-nav .nav-link {
+        width: 100%;
+        justify-content: flex-start;
+        padding: 10px 16px !important;
+    }
+
+    .navbar-actions {
+        width: 100%;
+        justify-content: space-between;
+        padding-top: 10px;
+        border-top: 1px solid var(--color-border);
+    }
+}
+
+
+/* =========================================================
+   8. TITRES ET DESCRIPTIONS
+   ========================================================= */
+
+.page-title {
+    margin-bottom: 8px;
+    font-weight: 700;
+    color: var(--color-text);
+}
+
+.page-description {
+    margin-bottom: 30px;
+    color: var(--color-text-muted);
+}
+
+
+/* =========================================================
+   9. CARTE GLASSMORPHISM / CONTENEUR SURFACE
+   ========================================================= */
+
+.glass-card {
+    padding: 24px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    box-shadow: var(--color-card-shadow);
+    backdrop-filter: blur(16px);
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.glass-card:hover {
+    background: var(--color-surface-hover);
+}
+
+
+/* =========================================================
+   10. BOUTONS BOOTSTRAP
+   ========================================================= */
+
+.btn-primary:not(.btn-nav-action) {
+    background: var(--color-btn-normal-bg);
+    border: 1.5px solid var(--color-btn-normal-border);
+    color: var(--color-btn-normal-text) !important;
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 10px 20px;
+    box-shadow: 0 2px 8px var(--color-btn-normal-shadow);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-primary:not(.btn-nav-action):hover,
+.btn-primary:not(.btn-nav-action):focus {
+    background: var(--color-btn-normal-hover-bg);
+    border-color: var(--color-btn-normal-hover-border);
+    color: var(--color-btn-normal-text) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px var(--color-btn-normal-shadow);
+}
+
+/* Boutons d'acceptation / validation (vert clair doux, agréable aux yeux) */
+.bouton-accepter,
+.bouton-valider,
+.btn-accept {
+    background: var(--color-btn-accept-bg) !important;
+    border: 1.5px solid var(--color-btn-accept-border) !important;
+    color: var(--color-btn-accept-text) !important;
+    box-shadow: 0 2px 10px var(--color-btn-accept-shadow) !important;
+    font-weight: 600;
+}
+
+.bouton-accepter:hover,
+.bouton-valider:hover,
+.btn-accept:hover,
+.bouton-accepter:focus-visible,
+.bouton-valider:focus-visible,
+.btn-accept:focus-visible {
+    background: var(--color-btn-accept-hover-bg) !important;
+    border-color: var(--color-btn-accept-hover-border) !important;
+    color: var(--color-btn-accept-text) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px var(--color-btn-accept-shadow) !important;
+}
+
+
+/* =========================================================
+   11. FORMULAIRES ET SÉLECTEURS
+   ========================================================= */
+
+.form-control,
+.form-select {
+    color: var(--color-input-text);
+    background: var(--color-input-bg);
+    border: 1.5px solid var(--color-input-border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+    color: var(--color-input-text);
+    background: var(--color-input-bg);
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 0.2rem rgba(91, 78, 255, 0.18);
+    outline: none;
+}
+
+.form-control::placeholder {
+    color: var(--color-text-muted);
+    opacity: 0.7;
+}
+
+
+/* =========================================================
+   12. PIED DE PAGE
+   ========================================================= */
+
+.app-footer {
+    padding: 24px 0;
+    color: var(--color-text-muted);
+    border-top: 1px solid var(--color-border);
+    background: var(--navbar-bg);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+
+/* =========================================================
+   13. MESSAGES DJANGO
+   ========================================================= */
+
+.messages-container {
+    margin-bottom: 24px;
+}
+
+
+/* =========================================================
+   14. BADGES DE STATUT
+   ========================================================= */
+
+.status-badge {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+/* Statut Envoyée */
+.status-sent {
+    color: #1d4ed8;
+    background: #dbeafe;
+    border: 1px solid #bfdbfe;
+}
+[data-theme="dark"] .status-sent {
+    color: #bfd7ff;
+    background: rgba(57, 126, 255, 0.18);
+    border: 1px solid rgba(57, 126, 255, 0.3);
+}
+
+/* Statut Acceptée */
+.status-accepted {
+    color: #15803d;
+    background: #dcfce7;
+    border: 1px solid #bbf7d0;
+}
+[data-theme="dark"] .status-accepted {
+    color: #8ef0c7;
+    background: rgba(34, 197, 139, 0.18);
+    border: 1px solid rgba(34, 197, 139, 0.3);
+}
+
+/* Statut Refusée */
+.status-refused {
+    color: #b91c1c;
+    background: #fee2e2;
+    border: 1px solid #fecaca;
+}
+[data-theme="dark"] .status-refused {
+    color: #ffadbd;
+    background: rgba(239, 68, 100, 0.18);
+    border: 1px solid rgba(239, 68, 100, 0.3);
+}
+
+
+/* =========================================================
+   15. ÉTIQUETTES ET LIBELLÉS (#0F766E)
+   ========================================================= */
+
+.etiquette,
+.etiquette-accounts,
+.etiquette-ecole {
+    color: #0F766E !important;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: inline-block;
+}
+
+[data-theme="dark"] .etiquette,
+[data-theme="dark"] .etiquette-accounts,
+[data-theme="dark"] .etiquette-ecole {
+    color: #2dd4bf !important;
+}

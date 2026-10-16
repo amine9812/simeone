@@ -1,0 +1,709 @@
+/* ==================================================
+   TABLEAU DE BORD ÉTUDIANT (STAGEPILOT)
+   Harmonisé avec les couleurs #0F766E et Noir (#111827)
+   ================================================== */
+
+.dashboard {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px 0 50px;
+}
+
+.dashboard-header {
+    margin-bottom: 24px;
+}
+
+.dashboard-header h1 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    margin: 0 0 8px;
+    color: var(--color-text);
+}
+
+.dashboard-subtitle {
+    color: var(--color-text);
+    font-size: 15px;
+    font-weight: 500;
+    margin: 0;
+}
+
+[data-theme="dark"] .dashboard-subtitle {
+    color: #cbd5e1;
+}
+
+/* ==================================================
+   GRILLE DES INDICATEURS CLÉS (KPIS)
+   ================================================== */
+
+.dashboard-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+    margin-bottom: 24px;
+}
+
+@media (min-width: 1024px) {
+    .dashboard-stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.school-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+@media (min-width: 1024px) {
+    .school-stats-grid {
+        grid-template-columns: repeat(5, 1fr) !important;
+    }
+}
+
+.school-stats-grid .stat-card {
+    padding: 18px 16px;
+}
+
+.stat-card {
+    padding: 22px;
+    background: var(--color-surface);
+    border: 1.5px solid var(--color-border);
+    border-radius: 14px;
+    box-shadow: var(--color-card-shadow);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.stat-card-total {
+    border-top: 4px solid #111827;
+}
+
+.stat-card-confirmed {
+    border-top: 4px solid #0F766E;
+    border-color: rgba(15, 118, 110, 0.45);
+    background: rgba(15, 118, 110, 0.04);
+}
+
+.stat-card-accepted {
+    border-top: 4px solid #0F766E;
+    border-color: rgba(15, 118, 110, 0.45);
+}
+
+.stat-card-pending {
+    border-top: 4px solid #111827;
+}
+
+.stat-card-refused {
+    border-top: 4px solid #ef4444;
+}
+
+[data-theme="dark"] .stat-card-total {
+    border-top-color: #ffffff;
+}
+
+[data-theme="dark"] .stat-card-confirmed {
+    border-top-color: #2dd4bf;
+    border-color: rgba(45, 212, 191, 0.4);
+    background: rgba(20, 184, 166, 0.08);
+}
+
+[data-theme="dark"] .stat-card-accepted {
+    border-top-color: #14b8a6;
+    border-color: rgba(20, 184, 166, 0.4);
+}
+
+[data-theme="dark"] .stat-card-pending {
+    border-top-color: #94a3b8;
+}
+
+[data-theme="dark"] .stat-card-refused {
+    border-top-color: #f87171;
+}
+
+.stat-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.stat-badge {
+    font-size: 11.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 3px 10px;
+    border-radius: 6px;
+}
+
+.stat-badge-total {
+    background: #111827;
+    color: #ffffff;
+}
+
+[data-theme="dark"] .stat-badge-total {
+    background: #ffffff;
+    color: #07152e;
+}
+
+.stat-badge-confirmed {
+    background: #0F766E;
+    color: #ffffff;
+    border: 1px solid #0F766E;
+    box-shadow: 0 1px 4px rgba(15, 118, 110, 0.3);
+}
+
+[data-theme="dark"] .stat-badge-confirmed {
+    background: #2dd4bf;
+    color: #042f2e;
+    border-color: #2dd4bf;
+    box-shadow: 0 1px 6px rgba(45, 212, 191, 0.35);
+}
+
+.stat-badge-accepted {
+    background: rgba(15, 118, 110, 0.12);
+    color: #0F766E;
+    border: 1px solid rgba(15, 118, 110, 0.35);
+}
+
+[data-theme="dark"] .stat-badge-accepted {
+    background: rgba(20, 184, 166, 0.15);
+    color: #2dd4bf;
+    border-color: rgba(20, 184, 166, 0.4);
+}
+
+.stat-badge-pending {
+    background: rgba(17, 24, 39, 0.08);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+}
+
+[data-theme="dark"] .stat-badge-pending {
+    background: rgba(255, 255, 255, 0.1);
+    color: #f1f5f9;
+}
+
+.stat-badge-refused {
+    background: #fef2f2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+}
+
+[data-theme="dark"] .stat-badge-refused {
+    background: rgba(239, 68, 68, 0.15);
+    color: #fca5a5;
+    border-color: rgba(239, 68, 68, 0.35);
+}
+
+.stat-icon {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--color-text-muted);
+}
+
+.stat-card h2,
+.stat-card h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0 0 6px;
+}
+
+.dashboard-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin: 0 0 6px;
+    line-height: 1.1;
+    color: var(--color-text);
+}
+
+.number-confirmed {
+    color: #0F766E !important;
+}
+
+[data-theme="dark"] .number-confirmed {
+    color: #2dd4bf !important;
+}
+
+.stat-icon-star {
+    color: #0F766E !important;
+}
+
+[data-theme="dark"] .stat-icon-star {
+    color: #2dd4bf !important;
+}
+
+.number-accepted {
+    color: #0F766E !important;
+}
+
+[data-theme="dark"] .number-accepted {
+    color: #2dd4bf !important;
+}
+
+.number-pending {
+    color: var(--color-text);
+}
+
+.number-refused {
+    color: #dc2626;
+}
+
+[data-theme="dark"] .number-refused {
+    color: #f87171;
+}
+
+.stat-note {
+    font-size: 13px;
+    color: var(--color-text-muted);
+    margin: 0;
+    line-height: 1.4;
+}
+
+.stat-note strong {
+    color: var(--color-text);
+}
+
+/* ==================================================
+   GRILLE CENTRALE (GRAPHIQUE DONUT & ACTIONS)
+   ================================================== */
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+    gap: 22px;
+    margin-bottom: 24px;
+}
+
+.dashboard-actions {
+    display: grid;
+    gap: 22px;
+}
+
+.section-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.section-card-header h2 {
+    font-size: 1.2rem;
+    margin: 0;
+    color: var(--color-text);
+}
+
+.badge-stat-taux {
+    background: rgba(15, 118, 110, 0.12);
+    color: #0F766E;
+    border: 1px solid rgba(15, 118, 110, 0.3);
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+[data-theme="dark"] .badge-stat-taux {
+    background: rgba(20, 184, 166, 0.15);
+    color: #2dd4bf;
+    border-color: rgba(20, 184, 166, 0.4);
+}
+
+.dashboard-responses-footer {
+    border-top: 1px solid var(--color-border);
+    margin-top: 16px;
+    padding-top: 12px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.dashboard-button {
+    display: inline-block;
+    padding: 11px 18px;
+    border-radius: 10px;
+    background: var(--color-btn-normal-bg);
+    border: 1.5px solid var(--color-btn-normal-border);
+    color: var(--color-btn-normal-text) !important;
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: 0 2px 8px var(--color-btn-normal-shadow);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dashboard-button:hover {
+    background: var(--color-btn-normal-hover-bg);
+    border-color: var(--color-btn-normal-hover-border);
+    color: var(--color-btn-normal-text) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px var(--color-btn-normal-shadow);
+}
+
+.dashboard-button:focus-visible {
+    outline: 3px solid #0F766E;
+    outline-offset: 3px;
+}
+
+/* ==================================================
+   DONUT CHART (#0F766E & #EF4444)
+   ================================================== */
+
+.dashboard-chart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 24px;
+    padding: 14px 0 20px;
+}
+
+.dashboard-donut {
+    width: 200px;
+    max-width: 100%;
+    position: relative;
+    flex: 0 1 200px;
+}
+
+.dashboard-donut svg {
+    display: block;
+    width: 100%;
+}
+
+.dashboard-donut circle {
+    fill: none;
+    stroke-width: 13;
+}
+
+.donut-first {
+    stroke: #0F766E;
+}
+
+.donut-second {
+    stroke: #ef4444;
+}
+
+[data-theme="dark"] .donut-first {
+    stroke: #14b8a6;
+}
+
+[data-theme="dark"] .donut-second {
+    stroke: #f87171;
+}
+
+.donut-center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.donut-center strong {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--color-text);
+}
+
+.donut-center span {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.dashboard-legend {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 16px;
+}
+
+.dashboard-legend li {
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+    font-size: 14px;
+    color: var(--color-text);
+}
+
+.dashboard-legend strong {
+    display: block;
+    margin-top: 3px;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex: 0 0 12px;
+}
+
+.legend-first {
+    background: #0F766E;
+}
+
+.legend-second {
+    background: #ef4444;
+}
+
+[data-theme="dark"] .legend-first {
+    background: #14b8a6;
+}
+
+[data-theme="dark"] .legend-second {
+    background: #f87171;
+}
+
+.dashboard-note {
+    font-size: 0.875rem;
+    margin: 0;
+    color: var(--color-text-muted);
+}
+
+.dashboard-empty {
+    padding: 32px 0;
+    text-align: center;
+    color: var(--color-text-muted);
+}
+
+/* ==================================================
+   SECTION DERNIÈRES CANDIDATURES
+   ================================================== */
+
+.dashboard-latest-section {
+    padding: 28px;
+    margin-top: 24px;
+}
+
+.dashboard-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+    border-bottom: 1.5px solid rgba(15, 118, 110, 0.2);
+    padding-bottom: 14px;
+}
+
+.dashboard-section-header h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 4px;
+    color: var(--color-text);
+}
+
+.dashboard-section-sub {
+    color: var(--color-text-muted);
+    font-size: 14px;
+    margin: 0;
+}
+
+.dashboard-view-all {
+    color: #0F766E;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.dashboard-view-all:hover {
+    color: #115E59;
+    text-decoration: underline;
+}
+
+[data-theme="dark"] .dashboard-view-all {
+    color: #2dd4bf;
+}
+
+.dashboard-candidatures-list {
+    display: grid;
+    gap: 12px;
+}
+
+.dashboard-candidature-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background: var(--color-surface);
+    border: 1.5px solid var(--color-border);
+    border-radius: 12px;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.dashboard-candidature-item:hover {
+    border-color: #0F766E;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(15, 118, 110, 0.08);
+}
+
+.candidature-item-info {
+    flex: 1;
+    min-width: 250px;
+}
+
+.candidature-entreprise {
+    color: #0F766E;
+    font-weight: 700;
+    font-size: 12.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: block;
+    margin-bottom: 2px;
+}
+
+[data-theme="dark"] .candidature-entreprise {
+    color: #2dd4bf;
+}
+
+.candidature-titre {
+    margin: 0 0 6px;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.candidature-titre a {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.candidature-titre a:hover {
+    color: #0F766E;
+}
+
+[data-theme="dark"] .candidature-titre a:hover {
+    color: #2dd4bf;
+}
+
+.candidature-item-meta {
+    font-size: 13px;
+    color: var(--color-text-muted);
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.candidature-item-aside {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.badge-cand-statut {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 14px;
+    border-radius: 999px;
+    font-size: 12.5px;
+    font-weight: 700;
+}
+
+.badge-cand-confirmed {
+    background: #0F766E;
+    color: #ffffff !important;
+    border: 1.5px solid #0F766E;
+    box-shadow: 0 2px 6px rgba(15, 118, 110, 0.25);
+}
+
+[data-theme="dark"] .badge-cand-confirmed {
+    background: #14b8a6;
+    color: #042f2e !important;
+    border-color: #2dd4bf;
+    box-shadow: 0 2px 8px rgba(20, 184, 166, 0.35);
+}
+
+.badge-cand-accepted {
+    background: rgba(15, 118, 110, 0.12);
+    color: #0F766E;
+    border: 1.5px solid #0F766E;
+}
+
+[data-theme="dark"] .badge-cand-accepted {
+    background: rgba(20, 184, 166, 0.15);
+    color: #2dd4bf;
+    border-color: rgba(20, 184, 166, 0.4);
+}
+
+.badge-cand-pending {
+    background: #111827;
+    color: #ffffff;
+    border: 1.5px solid #000000;
+}
+
+[data-theme="dark"] .badge-cand-pending {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.badge-cand-refused {
+    background: #fef2f2;
+    color: #b91c1c;
+    border: 1.5px solid #fecaca;
+}
+
+[data-theme="dark"] .badge-cand-refused {
+    background: rgba(239, 68, 68, 0.15);
+    color: #fca5a5;
+    border-color: rgba(239, 68, 68, 0.35);
+}
+
+.bouton-sm {
+    padding: 8px 16px !important;
+    font-size: 13.5px !important;
+}
+
+.dashboard-empty-candidatures {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--color-text-muted);
+}
+
+.dashboard-empty-candidatures p {
+    margin-bottom: 16px;
+    font-size: 15px;
+}
+
+/* ==================================================
+   RESPONSIVE
+   ================================================== */
+
+@media (max-width: 800px) {
+    .dashboard-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .dashboard {
+        padding-top: 14px;
+    }
+
+    .dashboard .glass-card {
+        padding: 20px;
+    }
+
+    .dashboard-candidature-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .candidature-item-aside {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
